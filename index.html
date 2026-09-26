@@ -44,7 +44,10 @@
   .stats span{color:var(--muted);font-size:13px}
 
   .phone{background:var(--surface);border:1px solid var(--border);border-radius:26px;padding:10px;box-shadow:0 30px 80px rgba(124,92,255,.18)}
-  .phone img{display:block;width:100%;border-radius:18px}
+  /* height:auto — картинка всегда держит свои 9:20. Инлайновые width/height
+     дают браузеру верный aspect-ratio до загрузки, но перебивались фиксом 640px,
+     из-за чего на широких колонках скрин сплющивало. */
+  .phone img{display:block;width:100%;height:auto;border-radius:18px}
 
   section{padding:52px 0}
   h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;font-weight:800;margin-bottom:10px}
@@ -120,7 +123,7 @@
       </ul>
     </div>
     <div class="phone">
-      <img src="shots/x-card.jpg" alt="Карточка заметки в Smart Favorite: пост с X с обложкой и описанием репозитория" width="320" height="640" loading="eager">
+      <img src="shots/x-card.jpg" alt="Карточка заметки в Smart Favorite: пост с X с обложкой и описанием репозитория" width="1080" height="2400" loading="eager">
     </div>
   </div>
 </section>
