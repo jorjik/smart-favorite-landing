@@ -27,6 +27,8 @@
   header{padding:18px 0;border-bottom:1px solid var(--border)}
   .head-in{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .logo{font-weight:800;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+  .lang{font-size:14px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:4px 10px}
+  .lang:hover{color:var(--text);background:var(--surface)}
   .btn{display:inline-block;padding:11px 20px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15px;transition:filter .15s}
   .btn--primary{background:var(--grad);color:#0b0d12;font-weight:700}
   .btn--primary:hover{filter:brightness(1.1)}
@@ -101,7 +103,10 @@
 <header>
   <div class="wrap head-in">
     <a class="logo" href="#">Smart Favorite</a>
-    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Открыть бота</a>
+    <nav style="display:flex;align-items:center;gap:10px">
+      <a class="lang" href="https://jorjik.github.io/smart-favorite-landing/en/">EN</a>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Открыть бота</a>
+    </nav>
   </div>
 </header>
 
