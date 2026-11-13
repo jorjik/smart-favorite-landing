@@ -1,0 +1,65 @@
+/* Smart Favorite — токены дизайн-системы.
+   Источник: design-system/smart-favorite/MASTER.md
+   Подключение: <link rel="stylesheet" href="design-system/smart-favorite/tokens.css"> перед основным <style>. */
+
+:root {
+  /* поверхности */
+  --bg: #0b0d12;
+  --surface: #161a25;
+  --border: #262c3d;
+  --border-hover: #33405c;
+
+  /* текст */
+  --text: #e8ebf4;      /* 16.3:1 на --bg */
+  --text2: #c2c8d8;     /* 11.6:1 */
+  --muted: #9aa3b8;     /* 7.7:1  */
+
+  /* бренд */
+  --brand: #7c5cff;         /* градиент, иконки, крупный текст */
+  --brand-strong: #6d4aff;  /* фон кнопок, белый текст 5.15:1 */
+  --accent: #2dd4bf;        /* ссылки, Pro, успех: 10.4:1 */
+  --grad: linear-gradient(90deg, #7c5cff, #2dd4bf);
+
+  /* типографика */
+  --font-head: "Outfit", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Work Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* отступы */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* радиусы и тени */
+  --radius-btn: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  /* движение */
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Доступность: фокус всегда виден */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
