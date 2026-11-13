@@ -3,179 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smart Favorite — второй мозг внутри Telegram</title>
-<meta name="description" content="Бот @SmartFavoriteBot сохраняет ссылки, фото, голосовые и видео прямо в Telegram: AI раскладывает по рубрикам, пишет саммари и находит обычной фразой. Pro — от 100 звёзд в месяц.">
+<title>Smart Favorite - второй мозг внутри Telegram</title>
+<meta name="description" content="Бот @SmartFavoriteBot сохраняет ссылки, фото, голосовые и видео прямо в Telegram: AI раскладывает по рубрикам, пишет саммари и находит обычной фразой. Pro - от 100 звёзд в месяц.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Smart Favorite — второй мозг внутри Telegram">
+<meta property="og:title" content="Smart Favorite - второй мозг внутри Telegram">
 <meta property="og:description" content="Перешли ссылку, фото или голосовое боту. AI рассортирует, подпишет и найдёт потом обычной фразой.">
 <meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0d12">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&family=Work+Sans:wght@300..700&display=swap">
-<link rel="stylesheet" href="design-system/smart-favorite/tokens.css">
 <style>
+  :root{
+    --bg:#0b0d12; --surface:#161a25; --border:#262c3d;
+    --text:#e8ebf4; --text2:#c2c8d8; --muted:#9aa3b8;
+    --brand:#7c5cff; --accent:#2dd4bf;
+    --grad:linear-gradient(90deg,#7c5cff,#2dd4bf);
+  }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);color:var(--text);
-    font:16px/1.6 var(--font-body);
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  body{background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,"Inter","Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
   a{color:var(--accent)}
-  .skip{position:absolute;left:-9999px}
-  .skip:focus{left:16px;top:12px;z-index:9;background:var(--surface);padding:8px 14px;border-radius:8px}
-
-  /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border)}
-  .head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px}
-  .logo{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-.01em}
-  .logo .mark{width:26px;height:26px;border-radius:8px;background:var(--grad);display:grid;place-items:center;color:#0b0d12}
-  .nav{display:flex;align-items:center;gap:8px}
-  .lang{font-size:13.5px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:10px;padding:6px 11px;transition:color var(--dur-fast),background var(--dur-fast)}
-  .lang:hover{color:var(--text);background:var(--surface)}
-
-  /* ---------- buttons ---------- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:11px 20px;border-radius:var(--radius-btn);font:600 15px/1 var(--font-body);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:filter var(--dur-fast) var(--ease-out),background var(--dur-fast),border-color var(--dur-fast)}
-  .btn--primary{background:var(--brand-strong);color:#fff}
-  .btn--primary:hover{filter:brightness(1.08)}
-  .btn--ghost{border-color:var(--border);color:var(--text);background:transparent}
-  .btn--ghost:hover{background:var(--surface);border-color:var(--border-hover)}
-  .btn--sm{min-height:38px;padding:8px 14px;font-size:14px}
-
-  /* ---------- hero ---------- */
-  .hero{padding:72px 0 56px}
-  .hero-in{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:20px}
-  .badge .dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
-  .note{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--accent);margin:0 0 18px}
-  h1{font-family:var(--font-head);font-weight:700;font-size:clamp(31px,4.5vw,48px);line-height:1.08;letter-spacing:-.025em;margin-bottom:18px}
   .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lead{color:var(--text2);font-size:clamp(16px,1.6vw,19px);line-height:1.55;max-width:540px;margin-bottom:28px}
-  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;list-style:none;max-width:520px}
-  .stats li{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
-  .stats b{display:block;font-family:var(--font-head);font-size:17px;font-weight:700;letter-spacing:-.01em}
-  .stats span{display:block;color:var(--muted);font-size:12.5px;line-height:1.35;margin-top:3px}
 
-  .phone{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:26px;padding:10px;box-shadow:var(--shadow-card)}
+  header{padding:18px 0;border-bottom:1px solid var(--border)}
+  .head-in{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{font-weight:800;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+  .lang{font-size:14px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:4px 10px}
+  .lang:hover{color:var(--text);background:var(--surface)}
+  .btn{display:inline-block;padding:11px 20px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15px;transition:filter .15s}
+  .btn--primary{background:var(--grad);color:#0b0d12;font-weight:700}
+  .btn--primary:hover{filter:brightness(1.1)}
+  .btn--ghost{border:1px solid var(--border);color:var(--text)}
+  .btn--ghost:hover{background:var(--surface)}
+
+  .hero{padding:64px 0 48px}
+  .hero-in{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .badge{display:inline-block;padding:5px 12px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:18px}
+  h1{font-size:clamp(30px,4.6vw,46px);line-height:1.12;letter-spacing:-.02em;font-weight:800;margin-bottom:16px}
+  .lead{color:var(--text2);font-size:clamp(16px,2vw,19px);max-width:540px;margin-bottom:26px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+  .stats{display:flex;gap:28px;flex-wrap:wrap;list-style:none}
+  .stats b{display:block;font-size:22px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stats span{color:var(--muted);font-size:13px}
+
+  .phone{background:var(--surface);border:1px solid var(--border);border-radius:26px;padding:10px;box-shadow:0 30px 80px rgba(124,92,255,.18)}
+  /* height:auto — картинка всегда держит свои 9:20. Инлайновые width/height
+     дают браузеру верный aspect-ratio до загрузки, но перебивались фиксом 640px,
+     из-за чего на широких колонках скрин сплющивало. */
   .phone img{display:block;width:100%;height:auto;border-radius:18px}
 
-  /* ---------- sections ---------- */
-  section{padding:64px 0}
-  .eyebrow{color:var(--accent);font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-  h2{font-family:var(--font-head);font-weight:600;font-size:clamp(24px,3vw,33px);line-height:1.15;letter-spacing:-.02em;margin-bottom:10px}
-  .sub{color:var(--muted);max-width:620px;margin-bottom:32px}
-
+  section{padding:52px 0}
+  h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.02em;font-weight:800;margin-bottom:10px}
+  .sub{color:var(--muted);margin-bottom:32px;max-width:640px}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);padding:24px;transition:border-color var(--dur-base),transform var(--dur-base) var(--ease-out)}
-  .card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
-  .card--wide{grid-column:span 2}
-  .ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:rgba(124,92,255,.14);color:var(--brand);margin-bottom:14px}
-  .ico svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-  .card h3{font-family:var(--font-head);font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:7px}
-  .card p{color:var(--text2);font-size:14.5px;line-height:1.55}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px}
+  .card .ico{font-size:24px;margin-bottom:12px}
+  .card h3{font-size:17px;margin-bottom:8px;letter-spacing:-.01em}
+  .card p{color:var(--text2);font-size:14.5px}
 
-  /* ---------- shots carousel ---------- */
-  .shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
-  .shots::-webkit-scrollbar{height:6px}
-  .shots::-webkit-scrollbar-thumb{background:var(--border-hover);border-radius:99px}
-  .shots figure{flex:0 0 auto;width:300px;scroll-snap-align:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);overflow:hidden}
-  .shots img{display:block;width:300px;height:520px;object-fit:cover;object-position:top}
-  .shots figcaption{padding:12px 16px;color:var(--muted);font-size:13.5px;line-height:1.4}
-  .shots-wrap{position:relative}
-  .shots-nav{position:absolute;top:calc(50% - 60px);width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:background var(--dur-fast),border-color var(--dur-fast)}
-  .shots-nav:hover{background:var(--border);border-color:var(--border-hover)}
-  .shots-nav.prev{left:-8px}
-  .shots-nav.next{right:-8px}
-  .shots-nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
-  .dots button{width:8px;height:8px;padding:0;border-radius:999px;border:0;background:var(--border-hover);cursor:pointer;transition:background var(--dur-fast),width var(--dur-fast)}
-  .dots button[aria-current="true"]{background:var(--accent);width:22px}
-  @media(max-width:640px){.shots-nav{display:none}}
-  @media(min-width:900px){
-    .shots figure{width:340px}
-    .shots img{width:340px;height:580px}
-  }
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .shots figure{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .shots img{display:block;width:100%;height:340px;object-fit:cover;object-position:top}
+  .shots figcaption{padding:12px 16px;color:var(--muted);font-size:13.5px}
 
-  /* ---------- how ---------- */
-  .how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .step{position:relative}
-  .step .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:999px;background:rgba(124,92,255,.16);color:var(--brand);font:700 14px/1 var(--font-head);margin-bottom:12px}
+  .how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:step}
+  .how .card{position:relative}
+  .how .card::before{counter-increment:step;content:counter(step);position:absolute;top:18px;right:18px;width:30px;height:30px;border-radius:999px;background:var(--grad);color:#0b0d12;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
 
-  /* ---------- pricing ---------- */
-  .price{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:780px}
-  .price .card{display:flex;flex-direction:column}
-  .price .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;min-height:56px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-  .price .num{font-family:var(--font-head);font-size:28px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-  .price ul{list-style:none}
-  .price li{color:var(--text2);font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--border)}
-  .price li:last-child{border-bottom:0}
-  .price li::before{content:"✓";color:var(--accent);font-weight:700;margin-right:9px}
-  .card--pro{border-color:var(--brand-strong);box-shadow:0 0 0 1px var(--brand-strong) inset}
-  .pill{display:inline-block;padding:3px 10px;border-radius:999px;background:rgba(45,212,191,.14);color:var(--accent);font-size:12px;font-weight:600;margin-left:6px;vertical-align:middle}
-  .price .btn{margin-top:auto;width:100%}
-  .price ul{margin-bottom:18px}
+  .price{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px}
+  .price .card h3{display:flex;justify-content:space-between;align-items:baseline}
+  .price .num{font-size:26px;font-weight:800}
+  .price ul{list-style:none;margin-top:14px}
+  .price li{padding:7px 0;border-top:1px solid var(--border);color:var(--text2);font-size:14.5px}
+  .card--pro{border-color:rgba(124,92,255,.55);box-shadow:0 0 0 1px rgba(124,92,255,.25) inset}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--grad);color:#0b0d12;font-size:12px;font-weight:700;margin-left:8px;vertical-align:middle}
 
-  /* ---------- final ---------- */
-  .final{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:52px 40px;text-align:center;overflow:hidden}
-  .final::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--grad)}
+  .final{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center}
   .final h2{margin-bottom:10px}
-  .final p{color:var(--text2);max-width:520px;margin:0 auto 26px}
+  .final p{color:var(--text2);margin-bottom:24px}
 
-  footer{border-top:1px solid var(--border);padding:26px 0 40px;color:var(--muted);font-size:13.5px}
+  footer{padding:28px 0 40px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--border);margin-top:56px}
   footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   footer a{color:var(--muted)}
-  footer a:hover{color:var(--text)}
 
-  @media(max-width:900px){
-    .hero{padding:48px 0 40px}
-    .hero-in{grid-template-columns:1fr;gap:36px}
-    .phone{max-width:330px;margin:0 auto;order:-1}
-    .grid,.how{grid-template-columns:1fr 1fr}
-    .card--wide{grid-column:span 2}
-    section{padding:48px 0}
+  @media(max-width:860px){
+    .hero-in{grid-template-columns:1fr}
+    .phone{max-width:340px;margin:0 auto}
+    .grid,.shots,.how{grid-template-columns:1fr 1fr}
+    .price{grid-template-columns:1fr}
   }
-  @media(max-width:600px){
-    .grid,.how,.price,.stats{grid-template-columns:1fr}
-    .card--wide{grid-column:span 1}
-    .final{padding:36px 20px}
-    .cta-row .btn{width:100%}
+  @media(max-width:560px){
+    .grid,.shots,.how{grid-template-columns:1fr}
+    .shots img{height:300px}
+    section{padding:38px 0}
   }
 </style>
 </head>
 <body>
-<a class="skip" href="#main">К содержанию</a>
 
 <header>
   <div class="wrap head-in">
-    <a class="logo" href="#">
-      <span class="mark" aria-hidden="true">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-      </span>
-      Smart Favorite
-    </a>
-    <nav class="nav" aria-label="Основная навигация">
+    <a class="logo" href="#">Smart Favorite</a>
+    <nav style="display:flex;align-items:center;gap:10px">
       <a class="lang" href="https://jorjik.github.io/smart-favorite-landing/en/">EN</a>
-      <a class="btn btn--primary btn--sm" href="https://t.me/SmartFavoriteBot">Открыть бота</a>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Открыть бота</a>
     </nav>
   </div>
 </header>
 
-<main id="main">
-
+<main>
 <section class="hero">
   <div class="wrap hero-in">
     <div>
-      <span class="badge"><span class="dot" aria-hidden="true"></span>работает там, где ты уже пишешь каждый день</span>
-      <p class="note">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 13 5.2 3.5a.5.5 0 0 0 .8-.4V7.9a.5.5 0 0 0-.8-.4L16 11"/></svg>
-        Короткие видео сохраняются с обложкой и ссылкой в один клик
-      </p>
+      <span class="badge">работает там, где ты уже пишешь каждый день</span>
+      <div style="font-weight:700;color:var(--accent);margin-top:8px;">🎬 Короткие видео сохраняются отлично — с обложкой и ссылкой в один клик</div>
       <h1>Второй мозг живёт <span class="grad-text">в твоей ленте Telegram</span></h1>
-      <p class="lead">Перешли боту ссылку, фото, голосовое или видео. AI разложит по рубрикам, напишет саммари и вытащит текст с картинки. Найдёшь потом обычной фразой — без тегов и папок.</p>
+      <p class="lead">Перешли боту ссылку, фото, голосовое или видео. AI разложит по рубрикам, напишет саммари и вытащит текст с картинки. Найдёшь потом обычной фразой - без тегов и папок.</p>
       <div class="cta-row">
         <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Сохранить первую заметку</a>
         <a class="btn btn--ghost" href="#how">Как это работает</a>
@@ -187,103 +129,56 @@
       </ul>
     </div>
     <div class="phone">
-      <img src="shots/x-card.jpg" alt="Карточка заметки Smart Favorite: пост из X с автором, обложкой репозитория и рубрикой" width="1079" height="1875" loading="eager">
+      <img src="shots/x-card.jpg" alt="Карточка заметки в Smart Favorite: пост @witcheer с X о репозитории hermes-browser-extension" width="1079" height="1875" loading="eager">
     </div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
-    <p class="eyebrow">Возможности</p>
     <h2>Что умеет бот</h2>
     <p class="sub">Обычное «сохранить в избранное» превращается в структурированную базу: с автором, картинкой, саммари и рубрикой.</p>
     <div class="grid">
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-        <h3>Ссылки — с автором и картинкой</h3>
-        <p>Threads, X, Instagram, YouTube, TikTok, статьи. Бот тянет заголовок, ник автора и превью — даже если страница закрыта и рендерится JS.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg></div>
-        <h3>Рубрики сами собой</h3>
-        <p>AI раскладывает заметки по твоему списку и учится на ручных переносах. Перенёс в «Работа» — следующие уедут туда же.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
-        <h3>Поиск фразой</h3>
-        <p>«где тот пост про оптимизацию токенов» — и заметка на месте. Ищется и текст, и саммари, и распознанный текст с фото.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 13 5.2 3.5a.5.5 0 0 0 .8-.4V7.9a.5.5 0 0 0-.8-.4L16 11"/></svg></div>
-        <h3>Видео: скачать или саммари</h3>
-        <p>По ссылке на YouTube или TikTok бот предложит кнопками скачать ролик или сделать выжимку. Длинное видео сохранится со ссылкой и обложкой.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></div>
-        <h3>Голосовые и фото с текстом</h3>
-        <p>Голосовые распознаются и становятся заметкой. С фото бот спросит: распознать текст или сохранить как есть.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-        <h3>Напоминания и рефералка</h3>
-        <p>«Напомнить» на карточке — в срок придёт сообщение в Telegram. Позвал друга: он сохранил 3 заметки — тебе 21 день Pro.</p>
-      </article>
+      <div class="card"><div class="ico">🔗</div><h3>Ссылки - с автором и картинкой</h3><p>Threads, X, Instagram, YouTube, TikTok, статьи. Бот тянет заголовок, ник автора и превью - даже если страница закрыта и рендерится JS.</p></div>
+      <div class="card"><div class="ico">🗂</div><h3>Рубрики сами собой</h3><p>AI раскладывает заметки по твоему списку рубрик и учится на ручных переносах. Перенёс в «Работа» - следующие уедут туда же.</p></div>
+      <div class="card"><div class="ico">🔎</div><h3>Поиск фразой</h3><p>«где тот пост про оптимизацию токенов» - и заметка на месте. Ищется и текст, и саммари, и распознанный текст с фото.</p></div>
+      <div class="card"><div class="ico">🎬</div><h3>Видео: скачать или саммари</h3><p>По ссылке на YouTube или TikTok бот предложит кнопками скачать ролик или сделать выжимку. Длинное видео сохранится со ссылкой и обложкой.</p></div>
+      <div class="card"><div class="ico">🎙</div><h3>Голосовые и фото с текстом</h3><p>Голосовые распознаются и становятся заметкой. С фото бот спросит: распознать текст или сохранить как есть.</p></div>
+      <div class="card"><div class="ico">⏰</div><h3>Напоминания и рефералка</h3><p>«Напомнить» на карточке - в срок придёт сообщение в Telegram. Позвал друга: он сохранил 3 заметки - тебе 21 день Pro.</p></div>
     </div>
   </div>
 </section>
 
 <section id="shots">
   <div class="wrap">
-    <p class="eyebrow">Витрина</p>
     <h2>Так выглядит лента</h2>
-    <p class="sub">Карточки как в Telegram, только с рубриками, авторами и превью. Скрины из живого мини-приложения — листай в сторону.</p>
-    <div class="shots-wrap">
-      <button class="shots-nav prev" type="button" aria-label="Предыдущий скриншот"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-      <div class="shots" tabindex="0" role="region" aria-label="Скриншоты мини-приложения, прокручиваются по горизонтали">
-      <figure><img src="shots/x-card.jpg" alt="Лента Smart Favorite: карточка поста из X с обложкой репозитория" loading="lazy" width="1079" height="1875"><figcaption>Пост с X: звёзды, вилки, обложка репо</figcaption></figure>
-      <figure><img src="shots/instagram-card.jpg" alt="Лента Smart Favorite: карточка Instagram-поста с картинкой" loading="lazy" width="1079" height="1875"><figcaption>Instagram: AI-реклама со сгенерированным описанием</figcaption></figure>
-      <figure><img src="shots/threads-card.jpg" alt="Лента Smart Favorite: карточка Threads-поста с ником автора" loading="lazy" width="1079" height="1875"><figcaption>Threads: ник автора и текст треда</figcaption></figure>
-      <figure><img src="shots/feed-list.jpg" alt="Лента Smart Favorite: список заметок с рубриками и счётчиками" loading="lazy" width="1079" height="1875"><figcaption>Лента: рубрики со счётчиками</figcaption></figure>
-      </div>
-      <button class="shots-nav next" type="button" aria-label="Следующий скриншот"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+    <p class="sub">Карточки как в Telegram, только с рубриками, авторами и превью. Скрины из живого мини-приложения.</p>
+    <div class="shots">
+      <figure><img src="shots/x-card.jpg" alt="Карточка с постом X: репозиторий hermes-browser-extension" loading="lazy"><figcaption>Пост с X: звёзды, вилки, обложка репо</figcaption></figure>
+      <figure><img src="shots/instagram-card.jpg" alt="Карточка с Instagram-постом про рекламу шоколадки" loading="lazy"><figcaption>Instagram: AI-реклама со сгенерированным описанием</figcaption></figure>
+      <figure><img src="shots/threads-card.jpg" alt="Карточка Threads-поста с ником автора и превью" loading="lazy"><figcaption>Threads: ник автора и текст треда</figcaption></figure>
     </div>
-    <div class="dots" role="group" aria-label="Выбор скриншота"></div>
   </div>
 </section>
 
 <section id="how">
   <div class="wrap">
-    <p class="eyebrow">Как начать</p>
     <h2>Три шага</h2>
-    <p class="sub">Ничего настраивать не нужно: бот работает сразу после /start.</p>
     <div class="how">
-      <div class="card step">
-        <span class="n" aria-hidden="true">1</span>
-        <h3>Перешли</h3>
-        <p>Любое сообщение из любого чата — боту. Или ссылку, голосовое, фото, документ.</p>
-      </div>
-      <div class="card step">
-        <span class="n" aria-hidden="true">2</span>
-        <h3>AI разберёт</h3>
-        <p>Саммари, рубрика, автор, картинка. Дубль ссылки не создаст копию — бот назовёт дату сохранения.</p>
-      </div>
-      <div class="card step">
-        <span class="n" aria-hidden="true">3</span>
-        <h3>Найди потом</h3>
-        <p>Открой мини-приложение или напиши боту /find с обычной фразой. Всё, что когда-то отложили, — в одном месте.</p>
-      </div>
+      <div class="card"><h3>Перешли</h3><p>Любое сообщение из любого чата - боту. Или ссылку, голосовое, фото, документ.</p></div>
+      <div class="card"><h3>AI разберёт</h3><p>Саммари, рубрика, автор, картинка. Дубль ссылки не создаст копию - бот назовёт дату сохранения.</p></div>
+      <div class="card"><h3>Найди потом</h3><p>Открой мини-приложение или напиши боту /find с обычной фразой. Всё, что когда-то отложили, - в одном месте.</p></div>
     </div>
   </div>
 </section>
 
 <section id="price">
   <div class="wrap">
-    <p class="eyebrow">Тарифы</p>
     <h2>Цены</h2>
     <p class="sub">Оплата звёздами Telegram прямо в боте. Pro включается сразу после платежа.</p>
     <div class="price">
       <div class="card">
-        <div class="head"><h3>Free</h3><span class="num">0 ★</span></div>
+        <h3>Free <span class="num">0</span></h3>
         <ul>
           <li>80 сохранений + 10 каждый месяц</li>
           <li>Ссылки, текст, фото, голосовые</li>
@@ -291,17 +186,14 @@
           <li>Поиск по заметкам</li>
           <li>Суточные лимиты на распознавание фото</li>
         </ul>
-        <a class="btn btn--ghost" href="https://t.me/SmartFavoriteBot">Начать бесплатно</a>
       </div>
       <div class="card card--pro">
-        <div class="head"><h3>Pro</h3><span class="num">100 ★/мес</span></div>
-        <p style="margin-top:10px"><span class="pill">21 день в подарок</span></p>
+        <h3>Pro <span class="num grad-text">100 ★/мес</span></h3>
         <ul>
           <li>Всё из Free без лимитов на AI-разбор</li>
-          <li>Годовой план — 830 ★ (выходит 69 ★/мес)</li>
-          <li>21 день Pro за друга с 3 заметками</li>
+          <li>Годовой план - 830 ★ (выходит 69 ★/мес)</li>
+          <li>21 день Pro в подарок за друга с 3 заметками</li>
         </ul>
-        <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Подключить Pro</a>
       </div>
     </div>
   </div>
@@ -311,12 +203,11 @@
   <div class="wrap">
     <div class="final">
       <h2>Избранное скоро кончится</h2>
-      <p>Telegram «Сохранённое» на сотни заметок — это свалка, а не база. Перенеси самое нужное туда, где его найдёшь.</p>
+      <p>Telegram «Сохранённое» на сотни заметок - это свалка, а не база. Перенеси самое нужное туда, где его найдёшь.</p>
       <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Открыть @SmartFavoriteBot</a>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>
@@ -326,38 +217,5 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var track = document.querySelector('.shots');
-  if (!track) return;
-  var dotsBox = document.querySelector('.dots');
-  var prev = document.querySelector('.shots-nav.prev');
-  var next = document.querySelector('.shots-nav.next');
-  var items = Array.prototype.slice.call(track.querySelectorAll('figure'));
-  var dots = items.map(function (_, i) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('aria-label', 'Скриншот ' + (i + 1));
-    b.addEventListener('click', function () { goTo(i); });
-    dotsBox.appendChild(b);
-    return b;
-  });
-  function step() { return items[0].getBoundingClientRect().width + 16; }
-  function goTo(i) {
-    track.scrollTo({ left: i * step(), behavior: 'smooth' });
-    track.focus({ preventScroll: true });
-  }
-  function index() { return Math.round(track.scrollLeft / step()); }
-  function sync() {
-    var i = Math.min(index(), items.length - 1);
-    dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
-  }
-  prev.addEventListener('click', function () { goTo(Math.max(0, index() - 1)); });
-  next.addEventListener('click', function () { goTo(Math.min(items.length - 1, index() + 1)); });
-  track.addEventListener('scroll', sync, { passive: true });
-  window.addEventListener('resize', sync);
-  sync();
-})();
-</script>
 </body>
 </html>
