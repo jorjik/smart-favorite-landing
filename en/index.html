@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Smart Favorite - a second brain inside Telegram</title>
-<meta name="description" content="The @SmartFavoriteBot keeps links, photos, voice notes and videos right inside Telegram: AI sorts them into categories, writes summaries and finds them later by a plain phrase. Pro from 100 Stars a month.">
+<meta name="description" content="The @SmartFavoriteBot keeps links, photos, voice notes and videos right inside Telegram: AI sorts them into categories, writes summaries and finds them later by a plain phrase. Import your saved posts from Instagram and X as a file or a list of links. Pro from 100 Stars a month.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Smart Favorite - a second brain inside Telegram">
 <meta property="og:description" content="Forward a link, photo or voice note to the bot. AI sorts it, labels it and finds it later by a plain phrase.">
@@ -73,6 +73,7 @@
   .price li{padding:7px 0;border-top:1px solid var(--border);color:var(--text2);font-size:14.5px}
   .card--pro{border-color:rgba(124,92,255,.55);box-shadow:0 0 0 1px rgba(124,92,255,.25) inset}
 
+  .import-note{color:var(--muted);font-size:13.5px;margin-top:20px;max-width:640px}
   .final{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center}
   .final h2{margin-bottom:10px}
   .final p{color:var(--text2);margin-bottom:24px}
@@ -112,7 +113,7 @@
     <div>
       <span class="badge">works where you already write every day</span>
       <h1>Your second brain lives <span class="grad-text">inside your Telegram feed</span></h1>
-      <p class="lead">Forward the bot a link, photo, voice note or video. AI sorts it into categories, writes a summary and pulls text out of images. Find it later with a plain phrase - no tags, no folders.</p>
+      <p class="lead">Forward the bot a link, photo, voice note or video - or bring everything you saved on Instagram and X over as a file. AI sorts it into categories, writes a summary and pulls text out of images. Find it later with a plain phrase - no tags, no folders.</p>
       <div class="cta-row">
         <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Save your first note</a>
         <a class="btn btn--ghost" href="#how">How it works</a>
@@ -141,6 +142,19 @@
       <div class="card"><div class="ico">🎙</div><h3>Voice notes and photos with text</h3><p>Voice notes are transcribed into notes. For a photo the bot asks: extract the text or save it as is.</p></div>
       <div class="card"><div class="ico">⏰</div><h3>Reminders and referrals</h3><p>The Remind button on a card sends you the note back in Telegram when it's due. Invite a friend: they save 3 notes - you get 21 days of Pro.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="import">
+  <div class="wrap">
+    <h2>Import saved posts - a file or a list</h2>
+    <p class="sub">No need to forward hundreds of links by hand. Upload an export or paste a list - notes appear right away, categorized and deduplicated.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">📦</div><h3>An export file</h3><p>Instagram (saved_posts), X (bookmark.js and like.js), Reddit saved_posts.csv, YouTube Takeout, browser bookmarks HTML. No need to unzip.</p></div>
+      <div class="card"><div class="ico">📋</div><h3>Or just links</h3><p>Paste a list of links or a whole text - the bot pulls every URL and skips the noise.</p></div>
+      <div class="card"><div class="ico">🧹</div><h3>Review the batch</h3><p>In the mini app, select what you do not need and trash it, or move the keepers to a category in one go. The whole import can be undone.</p></div>
+    </div>
+    <p class="import-note">On Free, an import fills whatever your save limit allows; we show the rest and offer Pro.</p>
   </div>
 </section>
 
@@ -175,7 +189,7 @@
       <div class="card">
         <h3>Free <span class="num">0</span></h3>
         <ul>
-          <li>80 saves + 10 more every month</li>
+          <li>80 saves + 3 more every month</li>
           <li>Links, text, photos, voice notes</li>
           <li>Categories and summaries from AI</li>
           <li>Search across your notes</li>
@@ -198,7 +212,7 @@
   <div class="wrap">
     <div class="final">
       <h2>Your favorites are running out</h2>
-      <p>Telegram's Saved Messages hits its 2000-message cap and turns into a dump, not a library. Move what matters to a place where you can find it.</p>
+      <p>Telegram Saved turns into a dump, not a library. Bring your Instagram and X saves over as a file, or forward them one by one - and find everything later with a plain phrase.</p>
       <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot">Open @SmartFavoriteBot</a>
     </div>
   </div>
