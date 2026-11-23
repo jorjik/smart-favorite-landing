@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как выгрузить сохранённое из Instagram — перенос в Telegram</title>
+<meta name="description" content="Пошагово: скачать сохранённые посты и рилсы из Instagram через Центр аккаунтов, получить ZIP с saved_posts.json и импортировать ссылки в Telegram-бот за пару минут.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/instagram.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как выгрузить сохранённое из Instagram">
+<meta property="og:description" content="ZIP с saved_posts.json → импорт в Telegram: ссылки, подписи, без дублей.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/instagram-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как выгрузить сохранённое из Instagram и перенести в Telegram",
+  "description": "Скачать архив сохранённых постов Instagram и импортировать ссылки в Telegram-бот Smart Favorite.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "Аккаунт Instagram"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Откройте Центр аккаунтов", "text": "В профиле Instagram откройте меню ☰ → «Центр аккаунтов» → «Ваша информация и разрешения»."},
+    {"@type": "HowToStep", "name": "Создайте экспорт", "text": "Нажмите «Экспорт информации» (в старых версиях — «Скачать информацию») → «Создать экспорт» и выберите аккаунт Instagram."},
+    {"@type": "HowToStep", "name": "Оставьте только «Сохранённое»", "text": "Снимите остальные галочки, выберите «Сохранённое», диапазон «За всё время» и формат JSON."},
+    {"@type": "HowToStep", "name": "Дождитесь письма", "text": "Instagram пришлёт ссылку на архив на почту — обычно от нескольких минут до пары дней. Скачайте ZIP."},
+    {"@type": "HowToStep", "name": "Загрузите ZIP в мини-приложение", "text": "Откройте Smart Favorite → «Импорт» → Instagram → выберите ZIP целиком. Файл saved_posts.json внутри найдётся сам."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Нужно ли распаковывать ZIP из Instagram?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Загрузите архив целиком: мини-приложение само найдёт saved_posts.json внутри your_instagram_activity/saved/."}},
+    {"@type": "Question", "name": "Почему ссылок меньше, чем сохранённых постов?", "acceptedAnswer": {"@type": "Answer", "text": "Часть записей — это удалённые посты, реклама или повторы: такие ссылки отбрасываются или считаются дублями. Числа до и после импорта показаны на экране результата."}},
+    {"@type": "Question", "name": "Переносятся ли картинки и текст постов?", "acceptedAnswer": {"@type": "Answer", "text": "Нет, заметка — это ссылка на пост и подпись из выгрузки. Картинку и описание бот подтянет позже, когда откроет ссылку."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Instagram</nav>
+    <span class="eyebrow">Instagram</span>
+    <h1>Как выгрузить сохранённое из Instagram и перенести в Telegram</h1>
+    <p class="lead">Instagram отдаёт все сохранённые посты и рилсы одним ZIP-архивом. Внутри — JSON со ссылками; загрузите архив в мини-приложение, и каждая ссылка станет заметкой.</p>
+    <p class="meta">~10 минут · бесплатно · OAuth не нужен, только файл</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Откройте Центр аккаунтов</h2>
+        <p>В приложении Instagram: профиль → меню <span class="inline-code">☰</span> → «Центр аккаунтов» → «Ваша информация и разрешения». С телефона путь тот же, что и с компьютера.</p>
+      </li>
+      <li>
+        <h2>Создайте экспорт информации</h2>
+        <p>Нажмите «Экспорт информации» (в старых версиях — «Скачать информацию») → «Создать экспорт». Выберите аккаунт Instagram, если их несколько.</p>
+      </li>
+      <li>
+        <h2>Оставьте только «Сохранённое»</h2>
+        <p>Снимите все остальные галочки и отметьте «Сохранённое». Диапазон — «За всё время», формат — <span class="inline-code">JSON</span>. Так архив будет маленьким и придёт быстрее.</p>
+      </li>
+      <li>
+        <h2>Дождитесь письма и скачайте ZIP</h2>
+        <p>Ссылка приходит на почту, привязанную к аккаунту: обычно от нескольких минут до пары дней. Скачайте архив на телефон или компьютер — распаковывать не нужно.</p>
+      </li>
+      <li>
+        <h2>Загрузите ZIP в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>, выберите источник «Instagram» и укажите ZIP целиком. Файл <span class="inline-code">your_instagram_activity/saved/saved_posts.json</span> найдётся сам.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Посты, рилсы и видео из «Сохранённого» — ссылками на исходные публикации.</li>
+        <li>Подписи, если они есть в выгрузке, — как текст заметки.</li>
+        <li class="no">Удалённые публикации и служебные записи: их ссылки не открываются и отбрасываются.</li>
+        <li class="no">Истории и личные сообщения — они не входят в раздел «Сохранённое».</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Нужно ли распаковывать архив?</summary><p>Нет. Загрузите ZIP как есть: разбор найдёт <span class="inline-code">saved_posts.json</span> внутри папки <span class="inline-code">your_instagram_activity/saved/</span>.</p></details>
+      <details><summary>Почему заметок меньше, чем сохранённых постов?</summary><p>Часть записей — удалённые посты, реклама или повторы внутри файла. Они пропускаются, а на экране результата видно, сколько добавлено, сколько уже было и сколько отброшено.</p></details>
+      <details><summary>Файл большой — это нормально?</summary><p>Здоровый архив «Сохранённого» — единицы мегабайт. Если ZIP больше 25 МБ, скорее всего в экспорт попали другие разделы: создайте новый, оставив только «Сохранённое».</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Перенесите сохранённое за пару минут</h2>
+      <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие источники</h2>
+      <div class="links">
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как выгрузить сохранённые посты Reddit — перенос в Telegram</title>
+<meta name="description" content="Запросите архив Reddit, найдите saved_posts.csv и импортируйте сохранённые посты в Telegram-бот. Если CSV не пришёл — перенос списком ссылок со страницы saved.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/reddit.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как выгрузить сохранённые посты Reddit">
+<meta property="og:description" content="saved_posts.csv или список ссылок → заметки в Telegram без дублей.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/threads-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как выгрузить сохранённые посты Reddit и перенести в Telegram",
+  "description": "Запросить архив Reddit, найти saved_posts.csv и импортировать ссылки в Telegram-бот Smart Favorite.",
+  "totalTime": "PT15M",
+  "tool": [{"@type": "HowToTool", "name": "Аккаунт Reddit"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Запросите архив", "text": "С компьютера откройте reddit.com/settings/data-request, войдите в аккаунт и запросите полную историю."},
+    {"@type": "HowToStep", "name": "Дождитесь ответа", "text": "Reddit пришлёт ссылку на архив в личные сообщения — обычно в течение нескольких дней, максимум до 30."},
+    {"@type": "HowToStep", "name": "Найдите saved_posts.csv", "text": "Скачайте ZIP и найдите в нём saved_posts.csv с колонками заголовка и ссылки."},
+    {"@type": "HowToStep", "name": "Загрузите файл в мини-приложение", "text": "Smart Favorite → «Импорт» → Reddit → выберите CSV или ZIP. Если в CSV нет полных ссылок, вставьте список со страницы сохранённого текстом."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Reddit не присылает архив — что делать?", "acceptedAnswer": {"@type": "Answer", "text": "Откройте old.reddit.com/saved (или reddit.com/saved) и скопируйте страницу целиком в «Импорт» → «Вставить ссылки»: разбор вытащит адреса постов. Для больших архивов повторите для нескольких страниц."}},
+    {"@type": "Question", "name": "Сохранятся ли subreddit и комментарии?", "acceptedAnswer": {"@type": "Answer", "text": "Subreddit виден в ссылке на пост. Комментарии в выгрузку сохранённого не входят — заметка хранит ссылку и заголовок."}},
+    {"@type": "Question", "name": "Можно ли перенести только часть сохранённого?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Загрузите всё, а затем на экране «Разобрать импортированное» выделите лишнее и уберите в корзину. Импорт целиком тоже можно отменить."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Reddit</nav>
+    <span class="eyebrow">Reddit</span>
+    <h1>Как выгрузить сохранённые посты Reddit и перенести в Telegram</h1>
+    <p class="lead">Reddit отдаёт сохранённое файлом <span class="inline-code">saved_posts.csv</span> в архиве данных. Загрузите его в мини-приложение — посты станут заметками со ссылкой и заголовком.</p>
+    <p class="meta">~15 минут · архив готовится до 30 дней</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Запросите архив данных</h2>
+        <p>С компьютера откройте <a href="https://www.reddit.com/settings/data-request">reddit.com/settings/data-request</a> и войдите в аккаунт. Выберите полную историю и отправьте запрос.</p>
+      </li>
+      <li>
+        <h2>Дождитесь сообщения</h2>
+        <p>Ссылка на архив приходит в личные сообщения Reddit, а не на почту. Обычно это несколько дней; официальный максимум — 30.</p>
+      </li>
+      <li>
+        <h2>Найдите saved_posts.csv</h2>
+        <p>Скачайте ZIP и найдите в нём <span class="inline-code">saved_posts.csv</span>. В нём есть заголовок поста и ссылка (permalink).</p>
+      </li>
+      <li>
+        <h2>Загрузите файл в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>, выберите «Reddit» и укажите CSV или ZIP целиком. Если в CSV только короткие пути без домена, скопируйте страницу сохранённого текстом в «Вставить ссылки» — этого хватит.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Сохранённые посты — ссылками, subreddit виден в адресе.</li>
+        <li>Заголовок поста — как название заметки.</li>
+        <li>Повторы и уже сохранённые ссылки пропускаются.</li>
+        <li class="no">Комментарии и голоса — Reddit не кладёт их в раздел сохранённого.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Архив не приходит — есть другой путь?</summary><p>Да: откройте <span class="inline-code">old.reddit.com/saved</span>, выделите страницу и вставьте её в «Импорт» → «Вставить ссылки». Разбор вытащит адреса постов, служебные ссылки отбросит.</p></details>
+      <details><summary>Сохранятся ли subreddit и комментарии?</summary><p>Subreddit останется в ссылке на пост. Комментарии в выгрузку сохранённого не входят: заметка — это ссылка и заголовок.</p></details>
+      <details><summary>Можно перенести только часть сохранённого?</summary><p>Да. Загрузите всё и на экране «Разобрать импортированное» выделите лишнее, чтобы убрать в корзину. Или отмените импорт целиком одной кнопкой.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Разберите сохранённое, пока оно не устарело</h2>
+      <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие источники</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

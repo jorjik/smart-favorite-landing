@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Переезд из Readwise Reader в Telegram — импорт статей</title>
+<meta name="description" content="Экспорт библиотеки Readwise Reader в CSV и перенос сохранённых статей в Telegram-бот: ссылки и заголовки станут заметками, без OAuth.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/readwise.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Переезд из Readwise Reader в Telegram">
+<meta property="og:description" content="CSV-экспорт библиотеки Reader → заметки в Telegram со ссылками.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/threads-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как перенести статьи из Readwise Reader в Telegram",
+  "description": "Экспортировать библиотеку Readwise Reader в CSV и импортировать ссылки в Telegram-бот Smart Favorite.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "Аккаунт Readwise"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Откройте настройки Reader", "text": "Войдите в readwise.io и откройте Reader → Settings → Export."},
+    {"@type": "HowToStep", "name": "Экспортируйте библиотеку", "text": "Нажмите Export CSV и скачайте файл библиотеки. Экспорт highlights — отдельный файл, для переноса ссылок он не нужен."},
+    {"@type": "HowToStep", "name": "Загрузите CSV в мини-приложение", "text": "Smart Favorite → «Импорт» → «Вставить ссылки» или «Закладки браузера» → выберите CSV. Ссылки и заголовки станут заметками."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Переносятся ли highlights и заметки Reader?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Импорт берёт адреса статей и заголовки; выделения и комментарии остаются в Readwise и в его экспорте highlights."}},
+    {"@type": "Question", "name": "Подойдёт ли экспорт обычного Readwise, а не Reader?", "acceptedAnswer": {"@type": "Answer", "text": "Экспорт Readwise — это в основном highlights книг и статей, часто без публичных ссылок. Для переноса сохранённых статей нужен именно CSV библиотеки Readwise Reader."}},
+    {"@type": "Question", "name": "Можно перенести только непрочитанное?", "acceptedAnswer": {"@type": "Answer", "text": "Импорт берёт все ссылки из файла. Загрузите всё, а прочитанное уберите в корзину массово на экране «Разобрать импортированное»."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Readwise Reader</nav>
+    <span class="eyebrow">Переезд · Readwise Reader</span>
+    <h1>Как перенести статьи из Readwise Reader в Telegram</h1>
+    <p class="lead">Readwise Reader хранит библиотеку статей; её можно выгрузить CSV-файлом. Загрузите его в мини-приложение — ссылки и заголовки станут заметками в Telegram.</p>
+    <p class="meta">~10 минут · бесплатно · OAuth не нужен</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Откройте настройки Reader</h2>
+        <p>Войдите на <a href="https://readwise.io">readwise.io</a> и откройте <b>Reader → Settings → Export</b>. Экспорт библиотеки и экспорт highlights — разные файлы.</p>
+      </li>
+      <li>
+        <h2>Скачайте CSV библиотеки</h2>
+        <p>Нажмите <b>Export CSV</b>. В файле будут адреса и заголовки сохранённых материалов. Файл с highlights для переноса ссылок не нужен.</p>
+      </li>
+      <li>
+        <h2>Загрузите в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>. Выберите «Закладки браузера» для CSV или «Вставить ссылки», если удобнее вставить адреса. Рубрику выберите до импорта.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Ссылки на статьи и другие материалы библиотеки.</li>
+        <li>Заголовки — как названия заметок.</li>
+        <li>Повторы и уже сохранённые ссылки пропускаются.</li>
+        <li class="no">Highlights, комментарии, теги и статус чтения.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Переносятся ли highlights и заметки Reader?</summary><p>Нет. Импортируются только адреса и заголовки. Выделения и комментарии остаются в Readwise и в его экспорте highlights — сохраните его отдельно.</p></details>
+      <details><summary>Подойдёт экспорт обычного Readwise?</summary><p>Экспорт Readwise — это в основном highlights книг и статей, часто без публичных ссылок. Для переноса сохранённых статей нужен CSV библиотеки именно Readwise Reader.</p></details>
+      <details><summary>Можно перенести только непрочитанное?</summary><p>Импорт берёт все ссылки из файла. Загрузите всё, а прочитанное уберите в корзину массово на экране разбора.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Перенесите библиотеку в Telegram</h2>
+      <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие сервисы</h2>
+      <div class="links">
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

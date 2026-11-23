@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как выгрузить «Посмотреть позже» и плейлисты YouTube — перенос в Telegram</title>
+<meta name="description" content="Экспорт Google Takeout только с плейлистами YouTube: playlists.csv с Video ID превращается в ссылки на видео и заметки в Telegram-боте.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/youtube.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как выгрузить плейлисты и «Посмотреть позже» с YouTube">
+<meta property="og:description" content="Takeout → плейлисты → CSV с Video ID → импорт ссылок в Telegram.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как выгрузить плейлисты YouTube и перенести их в Telegram",
+  "description": "Собрать архив Google Takeout с плейлистами YouTube и импортировать видео ссылками в Telegram-бот Smart Favorite.",
+  "totalTime": "PT15M",
+  "tool": [{"@type": "HowToTool", "name": "Аккаунт Google"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Откройте Takeout", "text": "Перейдите на takeout.google.com и нажмите «Снять выделение со всех»."},
+    {"@type": "HowToStep", "name": "Оставьте только плейлисты", "text": "Отметьте «YouTube и YouTube Music» → «Все данные YouTube» → снимите всё, кроме «Плейлистов». Туда входят «Посмотреть позже» и «Понравившиеся»."},
+    {"@type": "HowToStep", "name": "Экспортируйте архив", "text": "Создайте экспорт в ZIP и дождитесь письма со ссылкой на скачивание."},
+    {"@type": "HowToStep", "name": "Загрузите CSV в мини-приложение", "text": "Smart Favorite → «Импорт» → YouTube → выберите CSV или ZIP из папки playlists: колонка Video ID станет ссылкой на видео."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Почему в импорт попали все просмотренные видео?", "acceptedAnswer": {"@type": "Answer", "text": "В Takeout был отмечен раздел «История», а не только «Плейлисты». History содержит каждое просмотренное видео; создайте новый экспорт только с плейлистами."}},
+    {"@type": "Question", "name": "Что именно выгружается из «Посмотреть позже»?", "acceptedAnswer": {"@type": "Answer", "text": "Плейлист «Посмотреть позже» и «Понравившиеся» — это обычные плейлисты YouTube, поэтому они попадают в раздел Playlists вместе с остальными."}},
+    {"@type": "Question", "name": "Станут ли заметки видеофайлами?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Заметка хранит ссылку на видео, название и позже — обложку. Скачивать ролик не нужно, а бот не хранит медиа из Takeout."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / YouTube</nav>
+    <span class="eyebrow">YouTube</span>
+    <h1>Как выгрузить «Посмотреть позже» и плейлисты YouTube</h1>
+    <p class="lead">«Посмотреть позже» и «Понравившиеся» — это плейлисты YouTube. Google Takeout отдаёт их CSV-файлом с Video ID; мини-приложение превращает каждый ID в ссылку на видео.</p>
+    <p class="meta">~15 минут · архив Google готовится от минут до суток</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Откройте Google Takeout</h2>
+        <p>Перейдите на <a href="https://takeout.google.com">takeout.google.com</a> под тем аккаунтом, где смотрели YouTube, и нажмите «Снять выделение со всех».</p>
+      </li>
+      <li>
+        <h2>Оставьте только плейлисты</h2>
+        <p>Отметьте «YouTube и YouTube Music» → «Все данные YouTube» → снимите всё, кроме «Плейлистов». Именно там лежат «Посмотреть позже» и «Понравившиеся». Раздел «История» не нужен: он содержит каждое просмотренное видео.</p>
+      </li>
+      <li>
+        <h2>Экспортируйте архив</h2>
+        <p>Выберите формат ZIP, создайте экспорт и дождитесь письма со ссылкой. Для пары плейлистов хватает нескольких минут.</p>
+      </li>
+      <li>
+        <h2>Загрузите файл в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>, выберите «YouTube» и укажите CSV из папки <span class="inline-code">playlists</span> (или ZIP целиком). Колонка Video ID станет ссылкой на видео, название — заголовком заметки.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Видео из «Посмотреть позже» и других выбранных плейлистов.</li>
+        <li>Названия роликов — как заголовки заметок.</li>
+        <li>Повторы между плейлистами схлопываются, уже сохранённые ссылки пропускаются.</li>
+        <li class="no">История просмотров, если её не отмечать в Takeout.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Почему в импорт попали все просмотренные видео?</summary><p>В Takeout был отмечен раздел «История». Создайте новый экспорт только с «Плейлистами» — он меньше и точнее.</p></details>
+      <details><summary>Где в архиве лежит «Посмотреть позже»?</summary><p>В папке <span class="inline-code">playlists</span> среди CSV-файлов плейлистов. Файл «Посмотреть позже» может называться <span class="inline-code">Watch later.csv</span>, «Понравившиеся» — <span class="inline-code">Liked videos.csv</span>.</p></details>
+      <details><summary>Заметки будут видеофайлами?</summary><p>Нет. Заметка хранит ссылку, название и обложку. Скачивать ролики не нужно — бот не хранит медиа из Takeout.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Перенесите «Посмотреть позже» в Telegram</h2>
+      <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие источники</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

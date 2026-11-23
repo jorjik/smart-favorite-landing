@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Переезд из Raindrop.io в Telegram — импорт закладок</title>
+<meta name="description" content="Экспорт Raindrop.io в HTML или CSV и перенос закладок в Telegram-бот: ссылки и названия станут заметками, коллекции заменяет рубрика. Без OAuth.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/raindrop.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Переезд из Raindrop.io в Telegram">
+<meta property="og:description" content="Экспорт коллекций Raindrop → заметки в Telegram со ссылками и заголовками.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/threads-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как перенести закладки из Raindrop.io в Telegram",
+  "description": "Экспортировать коллекции Raindrop.io в HTML или CSV и импортировать их в Telegram-бот Smart Favorite.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "Аккаунт Raindrop.io"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Откройте экспорт", "text": "В Raindrop.io откройте Settings → Export и выберите формат HTML или CSV."},
+    {"@type": "HowToStep", "name": "Скачайте файл", "text": "Нажмите Export all bookmarks и дождитесь скачивания файла — он содержит все коллекции."},
+    {"@type": "HowToStep", "name": "Загрузите в мини-приложение", "text": "Smart Favorite → «Импорт» → «Закладки браузера» или «Вставить ссылки» → выберите файл. Коллекции станут одной рубрикой, разложить точнее можно после импорта."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Сохранятся ли коллекции Raindrop?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. HTML- и CSV-экспорт содержат ссылки и названия, но не структуру коллекций. Все закладки попадут в одну выбранную рубрику; дальше их можно переносить пачками на экране «Разобрать импортированное»."}},
+    {"@type": "Question", "name": "Что делать с тегами и заметками Raindrop?", "acceptedAnswer": {"@type": "Answer", "text": "Импортируются только адреса и заголовки. Теги и текстовые заметки остаются в экспорте Raindrop — их можно хранить как резервную копию."}},
+    {"@type": "Question", "name": "Можно перенести только одну коллекцию?", "acceptedAnswer": {"@type": "Answer", "text": "Да. В Raindrop откройте нужную коллекцию и экспортируйте её отдельно, затем загрузите этот файл. Или импортируйте всё и удалите лишнее одной кнопкой."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Raindrop.io</nav>
+    <span class="eyebrow">Переезд · Raindrop.io</span>
+    <h1>Как перенести закладки из Raindrop.io в Telegram</h1>
+    <p class="lead">Raindrop отдаёт все закладки одним файлом — HTML или CSV. Загрузите его в мини-приложение, и каждая ссылка станет заметкой с названием. Коллекции заменяет рубрика.</p>
+    <p class="meta">~10 минут · бесплатно · OAuth не нужен</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Откройте экспорт</h2>
+        <p>В Raindrop.io: аватар → <b>Settings</b> → <b>Export</b>. Выберите формат HTML (сохраняет названия) или CSV (если нужны поля вроде тегов в файле).</p>
+      </li>
+      <li>
+        <h2>Скачайте файл</h2>
+        <p>Нажмите <b>Export all bookmarks</b>. Файл содержит все коллекции; если нужна одна — откройте её и экспортируйте отдельно.</p>
+      </li>
+      <li>
+        <h2>Загрузите в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>. HTML положите в «Закладки браузера», CSV — в «Вставить ссылки» или тот же источник: разбор вытащит адреса. Перед загрузкой выберите рубрику.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Ссылки на статьи и страницы.</li>
+        <li>Названия закладок — как заголовки заметок.</li>
+        <li>Дубли и служебные адреса отбрасываются.</li>
+        <li class="no">Коллекции, теги, заметки и превью Raindrop.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Сохранятся ли коллекции Raindrop?</summary><p>Нет: экспорт содержит ссылки и названия, но не дерево коллекций. Все закладки попадут в выбранную рубрику, а разложить их точнее можно после импорта — выделяйте пачки на экране разбора и переносите в нужные рубрики.</p></details>
+      <details><summary>Что будет с тегами и заметками?</summary><p>Импортируются только адрес и заголовок. Теги и текстовые заметки остаются в файле экспорта Raindrop — сохраните его как резервную копию.</p></details>
+      <details><summary>Можно перенести одну коллекцию?</summary><p>Да. Экспортируйте коллекцию отдельно и загрузите этот файл. Если проще всё сразу — импортируйте всё, а лишнее уберите в корзину одной кнопкой.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Перенесите коллекции в Telegram</h2>
+      <p>Файл обрабатывается в памяти и не сохраняется на диске. Импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие сервисы</h2>
+      <div class="links">
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

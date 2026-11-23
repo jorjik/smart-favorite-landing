@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как перенести закладки браузера в Telegram — импорт HTML</title>
+<meta name="description" content="Экспорт закладок Chrome, Firefox, Safari и Edge в HTML и импорт в Telegram-бот: ссылки и названия станут заметками, папки заменяет рубрика.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/bookmarks.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как перенести закладки браузера в Telegram">
+<meta property="og:description" content="HTML-экспорт закладок → заметки в Telegram со ссылками и названиями.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/threads-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как перенести закладки браузера в Telegram",
+  "description": "Экспортировать закладки браузера в HTML и импортировать их в Telegram-бот Smart Favorite.",
+  "totalTime": "PT5M",
+  "tool": [{"@type": "HowToTool", "name": "Браузер с закладками"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Экспортируйте закладки", "text": "Chrome: chrome://bookmarks → ⋮ → «Экспорт закладок». Firefox: «Библиотека» → «Закладки» → «Управление» → «Импорт и резервные копии» → «Экспорт в HTML». Safari: «Файл» → «Экспорт» → «Закладки»."},
+    {"@type": "HowToStep", "name": "Выберите рубрику", "text": "В мини-приложении укажите рубрику, в которую попадут закладки: папки браузера не переносятся, рубрика заменяет их."},
+    {"@type": "HowToStep", "name": "Загрузите HTML", "text": "Smart Favorite → «Импорт» → «Закладки браузера» → выберите файл .html. Названия закладок станут заголовками заметок."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Переносятся ли папки закладок?", "acceptedAnswer": {"@type": "Answer", "text": "Нет, HTML-экспорт теряет структуру папок при импорте. Все закладки попадают в одну выбранную рубрику, а разложить их точнее можно позже на экране «Разобрать импортированное»."}},
+    {"@type": "Question", "name": "Какие браузеры подходят?", "acceptedAnswer": {"@type": "Answer", "text": "Любой браузер, который умеет экспортировать закладки в HTML: Chrome, Firefox, Safari, Edge, Opera, Vivaldi. Формат у них общий — Netscape Bookmark File."}},
+    {"@type": "Question", "name": "Импортируются ли favicons и описания?", "acceptedAnswer": {"@type": "Answer", "text": "Нет, берутся только адрес и название закладки. Обложку и описание бот подтянет сам, когда откроет ссылку."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Закладки браузера</nav>
+    <span class="eyebrow">Закладки браузера</span>
+    <h1>Как перенести закладки браузера в Telegram</h1>
+    <p class="lead">Любой браузер умеет отдавать закладки одним HTML-файлом. Загрузите его в мини-приложение — ссылки и названия станут заметками, а папки заменит выбранная рубрика.</p>
+    <p class="meta">~5 минут · работает с Chrome, Firefox, Safari, Edge</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Экспортируйте закладки</h2>
+        <p><b>Chrome:</b> <span class="inline-code">chrome://bookmarks</span> → ⋮ → «Экспорт закладок».<br>
+        <b>Firefox:</b> «Библиотека» → «Закладки» → «Управление» → «Импорт и резервные копии» → «Экспорт в HTML».<br>
+        <b>Safari:</b> «Файл» → «Экспорт» → «Закладки».<br>
+        <b>Edge:</b> <span class="inline-code">edge://favorites</span> → ⋯ → «Экспорт избранного».</p>
+      </li>
+      <li>
+        <h2>Выберите рубрику заранее</h2>
+        <p>Структура папок при импорте не сохраняется. Если хотите разложить закладки по темам, сначала импортируйте всё в одну рубрику — а потом переносите нужное пачками на экране разбора.</p>
+      </li>
+      <li>
+        <h2>Загрузите HTML в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>, выберите «Закладки браузера» и укажите файл <span class="inline-code">.html</span>. Название закладки станет заголовком заметки.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Все http(s)-ссылки из файла закладок.</li>
+        <li>Названия закладок — как заголовки заметок.</li>
+        <li>Служебные адреса вроде <span class="inline-code">chrome://</span> отбрасываются, дубли схлопываются.</li>
+        <li class="no">Папки, favicons и описания закладок.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Переносятся ли папки закладок?</summary><p>Нет. Все закладки попадают в одну рубрику, выбранную при импорте. Разложить точнее можно позже: на экране «Разобрать импортированное» выделяйте пачки и переносите в нужные рубрики.</p></details>
+      <details><summary>Подойдёт ли экспорт из другого браузера?</summary><p>Да, формат HTML общий (Netscape Bookmark File). Не важно, из какого браузера файл — импорт разберёт его одинаково.</p></details>
+      <details><summary>А если закладок тысячи?</summary><p>За один импорт берётся до 1000 ссылок, остальное честно считается пропущенным. Загрузите файл повторно: уже добавленные ссылки не задублируются, а в лимит попадут следующие.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Превратите закладки в базу заметок</h2>
+      <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие источники</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

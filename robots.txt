@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jorjik.github.io/smart-favorite-landing/sitemap.xml

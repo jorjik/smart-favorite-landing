@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Импорт избранного в Telegram — инструкции по выгрузкам | Smart Favorite</title>
+<meta name="description" content="Как перенести избранное и сохранённое в Telegram: выгрузки Instagram, X, Reddit, YouTube и закладок браузера, а также переезд из Raindrop, Instapaper и Readwise. Пошаговые инструкции и импорт файлом.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Импорт избранного в Telegram — инструкции по выгрузкам">
+<meta property="og:description" content="Пошагово: как скачать выгрузку и перенести сотни сохранённых ссылок в Telegram за пару минут.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Импорт избранного в Telegram",
+  "description": "Инструкции по выгрузке сохранённого из Instagram, X, Reddit, YouTube и браузера, а также переезд из Raindrop, Instapaper и Readwise.",
+  "url": "https://jorjik.github.io/smart-favorite-landing/import/",
+  "isPartOf": {"@type": "WebSite", "name": "Smart Favorite", "url": "https://jorjik.github.io/smart-favorite-landing/"}
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / Импорт</nav>
+    <span class="eyebrow">Импорт избранного</span>
+    <h1>Перенесите избранное в Telegram — файлом, без OAuth</h1>
+    <p class="lead">Скачайте выгрузку у сервиса, загрузите файл в мини-приложение — и получите все сохранённые ссылки заметками, с рубрикой и без дублей. Ниже — пошаговые инструкции для каждого источника.</p>
+    <p class="meta">5–10 минут на источник · файл не сохраняется на диске · импорт можно отменить целиком</p>
+
+    <p class="hub-title">Выгрузки соцсетей и браузера</p>
+    <div class="hub-grid">
+      <a class="hub-card" href="instagram.html"><b>Instagram</b><span>Сохранённые посты и рилсы из saved_posts.json</span></a>
+      <a class="hub-card" href="x.html"><b>X (Twitter)</b><span>Закладки и лайки из архива bookmark.js / like.js</span></a>
+      <a class="hub-card" href="reddit.html"><b>Reddit</b><span>Сохранённые посты из saved_posts.csv</span></a>
+      <a class="hub-card" href="youtube.html"><b>YouTube</b><span>Плейлисты «Посмотреть позже» и «Понравившиеся» из Takeout</span></a>
+      <a class="hub-card" href="bookmarks.html"><b>Закладки браузера</b><span>HTML-экспорт Chrome, Firefox, Safari и Edge</span></a>
+    </div>
+
+    <p class="hub-title">Переезд из других сервисов</p>
+    <div class="hub-grid">
+      <a class="hub-card" href="raindrop.html"><b>Raindrop.io</b><span>Коллекции закладок из HTML- или CSV-экспорта</span></a>
+      <a class="hub-card" href="instapaper.html"><b>Instapaper</b><span>Отложенное чтение из CSV-выгрузки</span></a>
+      <a class="hub-card" href="readwise.html"><b>Readwise Reader</b><span>Сохранённые статьи из CSV-экспорта библиотеки</span></a>
+    </div>
+
+    <section class="callout">
+      <h2>Что будет с файлом</h2>
+      <ul>
+        <li>Файл разбирается в памяти и никуда не сохраняется — на диске сервера его нет.</li>
+        <li>Ссылки, которые уже есть в заметках, пропускаются: дублей не будет.</li>
+        <li>Импорт можно отменить одной кнопкой — вся пачка уйдёт в корзину.</li>
+        <li class="no">Текст постов и картинки из выгрузки не переносятся: заметка — это ссылка, заголовок и подпись.</li>
+      </ul>
+    </section>
+
+    <section class="cta">
+      <h2>Готовы перенести избранное?</h2>
+      <p>Откройте мини-приложение, выберите источник и загрузите файл. Первые 80 заметок — бесплатно.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Не нашли свой сервис?</h2>
+      <p>Подойдёт любой файл со ссылками: CSV, JSON, HTML или обычный текст. Вставьте список ссылок — универсальный разбор вытащит адреса и отбросит служебные.</p>
+      <div class="links">
+        <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Вставить список ссылок</a>
+        <a href="../">О боте</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

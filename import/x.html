@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как выгрузить закладки и лайки из X (Twitter) — перенос в Telegram</title>
+<meta name="description" content="Как запросить архив X, найти bookmark.js и like.js, загрузить ZIP в Telegram-бот и перенести закладки и лайки заметками — без OAuth и ручного копирования.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/x.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как выгрузить закладки и лайки из X">
+<meta property="og:description" content="Архив X с bookmark.js и like.js → импорт в Telegram за пару минут.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как выгрузить закладки и лайки из X и перенести в Telegram",
+  "description": "Запросить архив данных X и импортировать ссылки из bookmark.js и like.js в Telegram-бот Smart Favorite.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "Аккаунт X"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Запросите архив", "text": "В X откройте «Настройки и конфиденциальность» → «Ваш аккаунт» → «Скачать архив данных» и подтвердите пароль."},
+    {"@type": "HowToStep", "name": "Дождитесь письма", "text": "Ссылка на скачивание приходит на почту аккаунта — обычно в течение суток."},
+    {"@type": "HowToStep", "name": "Скачайте ZIP", "text": "Скачайте архив и не распаковывайте его: внутри папки data лежат bookmark.js и like.js."},
+    {"@type": "HowToStep", "name": "Загрузите ZIP в мини-приложение", "text": "Откройте Smart Favorite → «Импорт» → X и выберите ZIP. Из закладок получатся ссылки на посты, из лайков — ссылки с текстом."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Импортируются закладки или лайки?", "acceptedAnswer": {"@type": "Answer", "text": "И то и другое, если они есть в архиве: bookmark.js даёт закладки, like.js — понравившиеся посты. У новых аккаунтов закладки могут лежать в bookmark.js с суффиксом partN."}},
+    {"@type": "Question", "name": "Почему из лайков пришло много ссылок?", "acceptedAnswer": {"@type": "Answer", "text": "Архив содержит все лайки за всё время. Если нужны только закладки, оставьте в X-архиве лишь раздел Bookmarks — или удалите лишнее на экране «Разобрать импортированное» массово."}},
+    {"@type": "Question", "name": "Что делать, если архив не приходит?", "acceptedAnswer": {"@type": "Answer", "text": "Проверьте папку «Спам» и запросите архив повторно через сутки. Пока архив в пути, можно вставить ссылки вручную: «Импорт» → «Вставить ссылки»."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / X (Twitter)</nav>
+    <span class="eyebrow">X (Twitter)</span>
+    <h1>Как выгрузить закладки и лайки из X и перенести в Telegram</h1>
+    <p class="lead">X отдаёт архив данных целиком: закладки лежат в <span class="inline-code">bookmark.js</span>, лайки — в <span class="inline-code">like.js</span>. Загрузите ZIP в мини-приложение, и посты станут заметками со ссылками.</p>
+    <p class="meta">~10 минут · бесплатно · архив готовится до суток</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Запросите архив данных</h2>
+        <p>В X откройте «Настройки и конфиденциальность» → «Ваш аккаунт» → «Скачать архив данных». Подтвердите пароль — X попросит его ещё раз, даже если вы уже вошли.</p>
+      </li>
+      <li>
+        <h2>Дождитесь письма</h2>
+        <p>Ссылка на скачивание приходит на почту, привязанную к аккаунту. Обычно это занимает от нескольких часов до суток. Проверьте «Спам».</p>
+      </li>
+      <li>
+        <h2>Скачайте ZIP, но не распаковывайте</h2>
+        <p>Внутри архива в папке <span class="inline-code">data</span> лежат <span class="inline-code">bookmark.js</span> и <span class="inline-code">like.js</span>. Мини-приложение читает их прямо из ZIP.</p>
+      </li>
+      <li>
+        <h2>Загрузите архив в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot/app?startapp=import">Smart Favorite → «Импорт»</a>, выберите «X (Twitter)» и укажите ZIP. Из закладок получатся ссылки на посты, у лайков в заголовок попадёт текст поста.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Закладки — ссылками вида <span class="inline-code">x.com/i/status/…</span>.</li>
+        <li>Лайки — ссылками, заголовком станет начало текста поста.</li>
+        <li>Повторы и служебные адреса отбрасываются, существующие ссылки не дублируются.</li>
+        <li class="no">Медиа из постов не скачивается: заметка хранит ссылку.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Импортируются закладки или лайки?</summary><p>И то и другое, если они есть в архиве. Хотите только закладки — перед запросом архива снимите лишние галочки или разберите пачку массово после импорта.</p></details>
+      <details><summary>Почему из лайков пришло много ссылок?</summary><p>Архив содержит все лайки за всё время, а не только недавние. На экране «Разобрать импортированное» лишнее можно выделить и убрать в корзину одной кнопкой.</p></details>
+      <details><summary>А если архив ещё не пришёл?</summary><p>Не ждите: откройте «Импорт» → «Вставить ссылки» и добавьте самое важное вручную. Архив можно загрузить позже — уже сохранённые ссылки не задублируются.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Перенесите закладки, пока архив свежий</h2>
+      <p>Файл обрабатывается в памяти и не сохраняется на диске. Импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot/app?startapp=import">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие источники</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
