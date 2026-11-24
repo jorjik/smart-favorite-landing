@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to export browser bookmarks — move them to Telegram</title>
+<meta name="description" content="Step by step: export bookmarks from Chrome, Firefox, Safari or Edge as HTML and import the links into the Telegram bot. Folders become rubrics.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/en/import/bookmarks.html">
+<link rel="alternate" hreflang="ru" href="https://jorjik.github.io/smart-favorite-landing/import/bookmarks.html">
+<link rel="alternate" hreflang="en" href="https://jorjik.github.io/smart-favorite-landing/en/import/bookmarks.html">
+<link rel="alternate" hreflang="x-default" href="https://jorjik.github.io/smart-favorite-landing/import/bookmarks.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to export browser bookmarks">
+<meta property="og:description" content="An HTML bookmarks export becomes Telegram notes; folders become rubrics.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="../../import/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to export browser bookmarks and move them to Telegram",
+  "description": "Export bookmarks from Chrome, Firefox, Safari or Edge as HTML and import them into the Telegram bot.",
+  "totalTime": "PT5M",
+  "tool": [{"@type": "HowToTool", "name": "A browser"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Export bookmarks in Chrome or Edge", "text": "Open chrome://bookmarks or edge://favorites, then menu, Export bookmarks. Save the HTML file."},
+    {"@type": "HowToStep", "name": "Export bookmarks in Firefox", "text": "Open Library, Bookmarks, Manage bookmarks, Import and Backup, Export Bookmarks to HTML."},
+    {"@type": "HowToStep", "name": "Export bookmarks in Safari", "text": "Choose File, Export, Bookmarks. Safari saves an HTML file with the same standard format."},
+    {"@type": "HowToStep", "name": "Upload to the mini app", "text": "Open Smart Favorite, Import, Browser bookmarks, and upload the HTML file. A ZIP also works."},
+    {"@type": "HowToStep", "name": "Keep or flatten folders", "text": "Folders become separate rubrics by default. Turn off Keep folders as rubrics to put everything in one rubric."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Do folders transfer?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, when Keep folders as rubrics is on. Each folder becomes a rubric; bookmarks outside folders go to the rubric selected in the mini app."}},
+    {"@type": "Question", "name": "Does it work with another browser?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Chrome, Firefox, Safari and Edge all export the Netscape Bookmark File format, and the parser handles them the same way."}},
+    {"@type": "Question", "name": "What if I have thousands of bookmarks?", "acceptedAnswer": {"@type": "Answer", "text": "One import takes up to 1000 links; the rest are reported as skipped. Upload the same file again: existing links are not duplicated and the next batch is imported."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--ghost" href="../../import/bookmarks.html">RU</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_bookmarks">Import</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Home</a> / <a href="./">Import</a> / Browser bookmarks</nav>
+    <span class="eyebrow">Browser bookmarks</span>
+    <h1>How to export browser bookmarks and move them to Telegram</h1>
+    <p class="lead">Every browser can export its bookmarks as one HTML file. Upload it to the mini app: links and titles become notes, and folders become rubrics.</p>
+    <p class="meta">~5 minutes · free · no OAuth, just a file</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Export bookmarks in Chrome or Edge</h2>
+        <p>Open <span class="inline-code">chrome://bookmarks</span> (or <span class="inline-code">edge://favorites</span>) → ⋮ → Export bookmarks. Save the HTML file.</p>
+      </li>
+      <li>
+        <h2>Export bookmarks in Firefox</h2>
+        <p>Open Library → Bookmarks → Manage bookmarks → Import and Backup → Export Bookmarks to HTML.</p>
+      </li>
+      <li>
+        <h2>Export bookmarks in Safari</h2>
+        <p>Choose File → Export → Bookmarks. Safari saves an HTML file with the same standard format.</p>
+      </li>
+      <li>
+        <h2>Upload to the mini app</h2>
+        <p>Open <a href="https://t.me/SmartFavoriteBot?start=import_bookmarks">Smart Favorite → Import</a>, choose Browser bookmarks and upload the HTML file (a ZIP also works).</p>
+      </li>
+      <li>
+        <h2>Keep or flatten folders</h2>
+        <p>Folders become separate rubrics by default. Bookmarks outside folders go to the rubric you pick. Turn off “Keep folders as rubrics” to put everything in one rubric.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>What gets imported</h2>
+      <ul>
+        <li>Every bookmark URL and its title.</li>
+        <li>Folder names as rubrics, including nested folders.</li>
+        <li class="no">Favicons, descriptions and browser history.</li>
+        <li class="no">Bookmarks with JavaScript or internal browser URLs.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <details><summary>Do folders transfer?</summary><p>Yes, when “Keep folders as rubrics” is on. Each folder becomes a rubric; bookmarks outside folders go to the rubric selected in the mini app.</p></details>
+      <details><summary>Does it work with another browser?</summary><p>Yes. Chrome, Firefox, Safari and Edge all export the Netscape Bookmark File format, and the parser handles all of them the same way.</p></details>
+      <details><summary>What if I have thousands of bookmarks?</summary><p>One import takes up to 1000 links; the rest are reported as skipped. Upload the same file again: existing links are not duplicated and the next batch is imported.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Move your browser bookmarks in a couple of minutes</h2>
+      <p>The file is not stored on disk, duplicates are skipped, and the whole import can be undone.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_bookmarks">Import saved posts</a>
+    </section>
+
+    <section class="related">
+      <h2>Other sources</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="https://t.me/SmartFavoriteBot?start=import_file">A file with links</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · a second-brain bot for Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

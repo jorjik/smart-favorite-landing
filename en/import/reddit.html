@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to export saved Reddit posts — move them to Telegram</title>
+<meta name="description" content="Step by step: request your Reddit data export, find saved_posts.csv, and import every saved post link into the Telegram bot.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/en/import/reddit.html">
+<link rel="alternate" hreflang="ru" href="https://jorjik.github.io/smart-favorite-landing/import/reddit.html">
+<link rel="alternate" hreflang="en" href="https://jorjik.github.io/smart-favorite-landing/en/import/reddit.html">
+<link rel="alternate" hreflang="x-default" href="https://jorjik.github.io/smart-favorite-landing/import/reddit.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to export saved Reddit posts">
+<meta property="og:description" content="saved_posts.csv becomes Telegram notes: links, titles, no duplicates.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="../../import/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to export saved Reddit posts and move them to Telegram",
+  "description": "Request a Reddit data export and import saved_posts.csv into the Telegram bot.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "Reddit"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Request your Reddit data", "text": "Open User Settings, Privacy and Security, Request data export. Reddit emails a link when the archive is ready."},
+    {"@type": "HowToStep", "name": "Download and unzip the archive", "text": "Exports can take up to 30 days, but usually arrive sooner. Unzip the file Reddit sends."},
+    {"@type": "HowToStep", "name": "Find saved_posts.csv", "text": "The archive contains saved_posts.csv with post titles and permalinks."},
+    {"@type": "HowToStep", "name": "Upload to the mini app", "text": "Open Smart Favorite, Import, Reddit, and upload the CSV or the whole ZIP."},
+    {"@type": "HowToStep", "name": "Review the batch", "text": "Every saved thread becomes a note. Remove the noise and move the keepers to a rubric."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Why are there fewer notes than saved posts?", "acceptedAnswer": {"@type": "Answer", "text": "Deleted, removed and private posts cannot be opened, so they are skipped. Duplicates inside the file are skipped too."}},
+    {"@type": "Question", "name": "The CSV has only short paths", "acceptedAnswer": {"@type": "Answer", "text": "Open your saved posts page, copy the visible text and paste it into Paste links. The universal parser will pull out the addresses."}},
+    {"@type": "Question", "name": "Can I import only one subreddit?", "acceptedAnswer": {"@type": "Answer", "text": "Export everything, then use the review screen to move a selected batch to a rubric or trash what you do not need."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--ghost" href="../../import/reddit.html">RU</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_reddit">Import</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Home</a> / <a href="./">Import</a> / Reddit</nav>
+    <span class="eyebrow">Reddit</span>
+    <h1>How to export saved Reddit posts and move them to Telegram</h1>
+    <p class="lead">Reddit can email you a data export with every saved post. Upload saved_posts.csv to the mini app and each saved thread becomes a note with its title.</p>
+    <p class="meta">~5 minutes plus export wait · free · no OAuth, just a file</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Request your Reddit data</h2>
+        <p>Open User Settings → Privacy &amp; Security → Request data export. Reddit emails a link when the archive is ready.</p>
+      </li>
+      <li>
+        <h2>Download and unzip the archive</h2>
+        <p>Exports can take up to 30 days, but usually arrive much sooner. Unzip the file Reddit sends.</p>
+      </li>
+      <li>
+        <h2>Find saved_posts.csv</h2>
+        <p>The archive contains <span class="inline-code">saved_posts.csv</span> with post titles and permalinks. Keep the CSV as is.</p>
+      </li>
+      <li>
+        <h2>Upload to the mini app</h2>
+        <p>Open <a href="https://t.me/SmartFavoriteBot?start=import_reddit">Smart Favorite → Import</a>, choose Reddit and upload the CSV or the whole ZIP.</p>
+      </li>
+      <li>
+        <h2>Review the batch</h2>
+        <p>Every saved thread becomes a note. Remove the noise and move the keepers to a rubric in one action.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>What gets imported</h2>
+      <ul>
+        <li>Saved posts and threads, as links to the originals.</li>
+        <li>Post titles from the CSV, as note titles.</li>
+        <li class="no">Deleted, removed or private posts.</li>
+        <li class="no">Comments, messages and votes.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <details><summary>Why are there fewer notes than saved posts?</summary><p>Deleted, removed and private posts cannot be opened, so they are skipped. Duplicates inside the file are skipped too.</p></details>
+      <details><summary>The CSV has only short paths</summary><p>If the export contains relative permalinks instead of full URLs, open your saved posts page, copy the visible text and paste it into Paste links. The universal parser will pull out the addresses.</p></details>
+      <details><summary>Can I import only one subreddit?</summary><p>Export everything, then use the review screen to select a batch and move it to a rubric, or trash what you do not need.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Move your saved Reddit posts in a couple of minutes</h2>
+      <p>The file is not stored on disk, duplicates are skipped, and the whole import can be undone.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_reddit">Import saved posts</a>
+    </section>
+
+    <section class="related">
+      <h2>Other sources</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Browser bookmarks</a>
+        <a href="https://t.me/SmartFavoriteBot?start=import_file">A file with links</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · a second-brain bot for Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

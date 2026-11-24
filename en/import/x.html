@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to export X bookmarks and likes — move them to Telegram</title>
+<meta name="description" content="Step by step: request your X (Twitter) data archive, find bookmark.js and like.js, and import every saved post link into the Telegram bot.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/en/import/x.html">
+<link rel="alternate" hreflang="ru" href="https://jorjik.github.io/smart-favorite-landing/import/x.html">
+<link rel="alternate" hreflang="en" href="https://jorjik.github.io/smart-favorite-landing/en/import/x.html">
+<link rel="alternate" hreflang="x-default" href="https://jorjik.github.io/smart-favorite-landing/import/x.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to export X bookmarks and likes">
+<meta property="og:description" content="bookmark.js and like.js from your X archive become Telegram notes with links and post text.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="../../import/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to export X bookmarks and likes and move them to Telegram",
+  "description": "Download an X data archive and import bookmarks and likes into the Telegram bot.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "X (Twitter)"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Request your X archive", "text": "Open Settings and privacy, Your account, Download an archive of your data. Confirm your password."},
+    {"@type": "HowToStep", "name": "Download and unzip the archive", "text": "Open the email from X and download the archive, usually within 24 hours. Unzip it and open the data folder."},
+    {"@type": "HowToStep", "name": "Find bookmark.js and like.js", "text": "data/bookmark.js holds bookmarks, data/like.js holds likes."},
+    {"@type": "HowToStep", "name": "Upload to the mini app", "text": "Open Smart Favorite, Import, X, and upload the ZIP or the JS files. The parser strips the window.YTD wrapper."},
+    {"@type": "HowToStep", "name": "Review the batch", "text": "Bookmarks become x.com/i/status links; likes also get the post text as a title."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How long does the X archive take?", "acceptedAnswer": {"@type": "Answer", "text": "Usually under 24 hours. X emails a download link when the archive is ready."}},
+    {"@type": "Question", "name": "Why are some likes missing?", "acceptedAnswer": {"@type": "Answer", "text": "Deleted posts, private accounts and duplicates are skipped. The result screen shows the exact counts."}},
+    {"@type": "Question", "name": "Do I need to unzip the archive?", "acceptedAnswer": {"@type": "Answer", "text": "No. Upload the ZIP as is, or unzip it and upload bookmark.js and like.js separately."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--ghost" href="../../import/x.html">RU</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_x">Import</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Home</a> / <a href="./">Import</a> / X (Twitter)</nav>
+    <span class="eyebrow">X (Twitter)</span>
+    <h1>How to export X bookmarks and likes and move them to Telegram</h1>
+    <p class="lead">X packs all bookmarks and likes into one data archive. The files bookmark.js and like.js contain every post ID; upload the ZIP or the files themselves and each post becomes a note.</p>
+    <p class="meta">~10 minutes plus archive wait · free · no OAuth, just a file</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Request your X archive</h2>
+        <p>Open Settings and privacy → Your account → Download an archive of your data. Confirm your password and wait for the email.</p>
+      </li>
+      <li>
+        <h2>Download and unzip the archive</h2>
+        <p>The email usually arrives within 24 hours. Unzip it and open the <span class="inline-code">data</span> folder.</p>
+      </li>
+      <li>
+        <h2>Find bookmark.js and like.js</h2>
+        <p><span class="inline-code">data/bookmark.js</span> holds bookmarks, <span class="inline-code">data/like.js</span> holds likes. You can upload the ZIP or just these files.</p>
+      </li>
+      <li>
+        <h2>Upload to the mini app</h2>
+        <p>Open <a href="https://t.me/SmartFavoriteBot?start=import_x">Smart Favorite → Import</a>, choose X and upload the ZIP or the JS files. The parser strips the <span class="inline-code">window.YTD...</span> wrapper.</p>
+      </li>
+      <li>
+        <h2>Review the batch</h2>
+        <p>Bookmarks become <span class="inline-code">x.com/i/status/&lt;id&gt;</span> links; likes also get the post text as a title. Remove the noise and move the keepers to a rubric.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>What gets imported</h2>
+      <ul>
+        <li>Bookmarked posts, as links to the original posts.</li>
+        <li>Liked posts with their text as the note title when the archive has it.</li>
+        <li class="no">Deleted or private posts that the archive still mentions.</li>
+        <li class="no">Direct messages, followers and media files.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <details><summary>How long does the X archive take?</summary><p>Usually under 24 hours. X emails a download link when the archive is ready.</p></details>
+      <details><summary>Why are some likes missing?</summary><p>Deleted posts, private accounts and duplicates are skipped. The result screen shows the exact counts.</p></details>
+      <details><summary>Do I need to unzip the archive?</summary><p>No. Upload the ZIP as is, or unzip it and upload <span class="inline-code">bookmark.js</span> and <span class="inline-code">like.js</span> separately.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Move your X bookmarks and likes in a couple of minutes</h2>
+      <p>The file is not stored on disk, duplicates are skipped, and the whole import can be undone.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_x">Import saved posts</a>
+    </section>
+
+    <section class="related">
+      <h2>Other sources</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Browser bookmarks</a>
+        <a href="https://t.me/SmartFavoriteBot?start=import_file">A file with links</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · a second-brain bot for Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

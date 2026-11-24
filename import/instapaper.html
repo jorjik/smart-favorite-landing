@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Переезд из Instapaper в Telegram — импорт отложенного чтения</title>
-<meta name="description" content="Скачайте CSV-экспорт Instapaper и перенесите сохранённые статьи в Telegram-бот: ссылки и заголовки станут заметками, папки заменяет рубрика.">
+<meta name="description" content="Скачайте CSV-экспорт Instapaper и перенесите сохранённые статьи в Telegram-бот: ссылки и заголовки станут заметками, а папки — рубриками.">
 <link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/instapaper.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Переезд из Instapaper в Telegram">
@@ -22,7 +22,7 @@
   "step": [
     {"@type": "HowToStep", "name": "Откройте настройки", "text": "Войдите в Instapaper на сайте и откройте Settings."},
     {"@type": "HowToStep", "name": "Скачайте CSV", "text": "В разделе Export нажмите Download .CSV — файл содержит ссылки, заголовки и папки."},
-    {"@type": "HowToStep", "name": "Загрузите в мини-приложение", "text": "Smart Favorite → «Импорт» → «Вставить ссылки» или «Закладки браузера» → выберите CSV. Папки не переносятся: выберите одну рубрику заранее."}
+    {"@type": "HowToStep", "name": "Загрузите в мини-приложение", "text": "Smart Favorite → «Импорт» → «Файл со ссылками» → выберите CSV. Колонка Folder станет рубриками; галочка «Сохранять папки как рубрики» включена по умолчанию."}
   ]
 }
 </script>
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Переносятся ли папки Instapaper?", "acceptedAnswer": {"@type": "Answer", "text": "Нет, импорт берёт ссылки и заголовки. Все статьи попадут в одну рубрику; разложить их по темам можно после импорта на экране «Разобрать импортированное»."}},
+    {"@type": "Question", "name": "Переносятся ли папки Instapaper?", "acceptedAnswer": {"@type": "Answer", "text": "Да, если в CSV есть колонка Folder: папки станут отдельными рубриками. Статьи без папки попадут в выбранную рубрику."}},
     {"@type": "Question", "name": "Что будет с текстом статей и highlights?", "acceptedAnswer": {"@type": "Answer", "text": "Текст и выделения остаются в Instapaper и в CSV-экспорте. В Telegram переносится ссылка на статью и её заголовок — бот подтянет описание и обложку при открытии."}},
     {"@type": "Question", "name": "Где взять экспорт, если нет доступа к сайту?", "acceptedAnswer": {"@type": "Answer", "text": "Экспорт доступен только в веб-версии Instapaper: instapaper.com/user → Settings → Export. Из мобильного приложения файл не скачать."}}
   ]
@@ -43,7 +43,7 @@
 <header class="g-head">
   <div class="wrap g-head-in">
     <a class="g-logo" href="../">Smart Favorite</a>
-    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import">Импортировать</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_file">Импортировать</a>
   </div>
 </header>
 
@@ -66,7 +66,7 @@
       </li>
       <li>
         <h2>Загрузите в мини-приложение</h2>
-        <p>Откройте <a href="https://t.me/SmartFavoriteBot?start=import">Smart Favorite → «Импорт»</a>. Выберите «Закладки браузера» для CSV или «Вставить ссылки», если хотите просто вставить адреса. Рубрику выберите до импорта: папки Instapaper не переносятся.</p>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot?start=import_file">Smart Favorite → «Импорт»</a>, выберите «Файл со ссылками» и загрузите CSV. Папки Instapaper станут рубриками, а статьи без папки попадут в выбранную рубрику.</p>
       </li>
     </ol>
 
@@ -76,13 +76,13 @@
         <li>Ссылки на отложенные статьи.</li>
         <li>Заголовки статей — как названия заметок.</li>
         <li>Архивные и уже сохранённые ссылки не задублируются.</li>
-        <li class="no">Текст статей, highlights и папки Instapaper.</li>
+        <li class="no">Текст статей и highlights.</li>
       </ul>
     </section>
 
     <section class="faq">
       <h2>Частые вопросы</h2>
-      <details><summary>Переносятся ли папки Instapaper?</summary><p>Нет, импорт берёт ссылки и заголовки. Все статьи попадут в одну рубрику; после импорта их можно раскладывать по темам пачками.</p></details>
+      <details><summary>Переносятся ли папки Instapaper?</summary><p>Да, если в CSV есть колонка Folder: каждая папка станет рубрикой. Статьи без папки попадут в выбранную рубрику. Снимите галочку «Сохранять папки как рубрики», если хотите сложить всё в одну.</p></details>
       <details><summary>Что будет с текстом статей и выделениями?</summary><p>Они остаются в Instapaper и в CSV-экспорте. В Telegram переносится ссылка и заголовок, а описание и обложку бот подтянет сам.</p></details>
       <details><summary>Можно перенести только непрочитанное?</summary><p>В CSV есть отметки о статусе, но импорт берёт все ссылки. Импортируйте всё, а прочитанное уберите в корзину массово на экране разбора.</p></details>
     </section>
@@ -90,7 +90,7 @@
     <section class="cta">
       <h2>Соберите чтение в одном месте</h2>
       <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
-      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import">Импортировать избранное</a>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_file">Импортировать избранное</a>
     </section>
 
     <section class="related">

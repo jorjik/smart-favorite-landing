@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to export YouTube Watch later and liked videos — move them to Telegram</title>
+<meta name="description" content="Step by step: download a Google Takeout archive, find the playlists CSV, and import Watch later and liked video links into the Telegram bot.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/en/import/youtube.html">
+<link rel="alternate" hreflang="ru" href="https://jorjik.github.io/smart-favorite-landing/import/youtube.html">
+<link rel="alternate" hreflang="en" href="https://jorjik.github.io/smart-favorite-landing/en/import/youtube.html">
+<link rel="alternate" hreflang="x-default" href="https://jorjik.github.io/smart-favorite-landing/import/youtube.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to export YouTube playlists">
+<meta property="og:description" content="Watch later and liked videos from Takeout become Telegram notes with titles.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/x-card.jpg">
+<link rel="stylesheet" href="../../import/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to export YouTube Watch later and liked videos and move them to Telegram",
+  "description": "Download a Google Takeout archive and import YouTube playlist CSV files into the Telegram bot.",
+  "totalTime": "PT10M",
+  "tool": [{"@type": "HowToTool", "name": "Google Takeout"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Open Google Takeout", "text": "Go to myaccount.google.com, Data and privacy, Download your data."},
+    {"@type": "HowToStep", "name": "Select only YouTube playlists", "text": "Deselect everything, then choose YouTube and YouTube Music, playlists. Pick the CSV format if Google asks."},
+    {"@type": "HowToStep", "name": "Create the export and download it", "text": "Takeout emails a link when the archive is ready. Download and unzip it."},
+    {"@type": "HowToStep", "name": "Find the playlist CSV", "text": "Inside Takeout/YouTube and YouTube Music/playlists/ look for Watch later.csv and Liked videos.csv."},
+    {"@type": "HowToStep", "name": "Upload to the mini app", "text": "Open Smart Favorite, Import, YouTube, and upload the CSV or the whole ZIP."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Which Takeout format should I choose?", "acceptedAnswer": {"@type": "Answer", "text": "CSV is the easiest: each row has a Video ID and a title. JSON also works with the universal file parser."}},
+    {"@type": "Question", "name": "Why are some videos missing?", "acceptedAnswer": {"@type": "Answer", "text": "Private, deleted and region-blocked videos are skipped, and duplicates are counted once."}},
+    {"@type": "Question", "name": "Can I import one playlist only?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Upload just that playlist CSV, or import everything and remove the rest in bulk on the review screen."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--ghost" href="../../import/youtube.html">RU</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_youtube">Import</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Home</a> / <a href="./">Import</a> / YouTube</nav>
+    <span class="eyebrow">YouTube</span>
+    <h1>How to export YouTube Watch later and liked videos and move them to Telegram</h1>
+    <p class="lead">Google Takeout can give you Watch later, Liked videos and your own playlists as CSV files. Upload them to the mini app and every video becomes a note with its title.</p>
+    <p class="meta">~10 minutes plus Takeout wait · free · no OAuth, just a file</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Open Google Takeout</h2>
+        <p>Go to <span class="inline-code">myaccount.google.com</span> → Data &amp; privacy → Download your data.</p>
+      </li>
+      <li>
+        <h2>Select only YouTube playlists</h2>
+        <p>Deselect everything, then choose YouTube and YouTube Music → playlists. Pick the CSV format if Google asks.</p>
+      </li>
+      <li>
+        <h2>Create the export and download it</h2>
+        <p>Takeout emails a link when the archive is ready. Download and unzip it.</p>
+      </li>
+      <li>
+        <h2>Find the playlist CSV</h2>
+        <p>Inside <span class="inline-code">Takeout/YouTube and YouTube Music/playlists/</span> look for <span class="inline-code">Watch later.csv</span> and <span class="inline-code">Liked videos.csv</span>.</p>
+      </li>
+      <li>
+        <h2>Upload to the mini app</h2>
+        <p>Open <a href="https://t.me/SmartFavoriteBot?start=import_youtube">Smart Favorite → Import</a>, choose YouTube and upload the CSV or the whole ZIP. The Video ID column becomes a watch link and the title becomes the note title.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>What gets imported</h2>
+      <ul>
+        <li>Watch later, Liked videos and your own playlists, as video links.</li>
+        <li>Video titles from the CSV.</li>
+        <li class="no">Watch history and search history.</li>
+        <li class="no">Private or deleted videos that no longer open.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <details><summary>Which Takeout format should I choose?</summary><p>CSV is the easiest: each row has a Video ID and a title. JSON also works with the universal file parser.</p></details>
+      <details><summary>Why are some videos missing?</summary><p>Private, deleted and region-blocked videos are skipped, and duplicates are counted once.</p></details>
+      <details><summary>Can I import one playlist only?</summary><p>Yes. Upload just that playlist CSV, or import everything and use the review screen to remove the rest in bulk.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Move your YouTube playlists in a couple of minutes</h2>
+      <p>The file is not stored on disk, duplicates are skipped, and the whole import can be undone.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_youtube">Import saved posts</a>
+    </section>
+
+    <section class="related">
+      <h2>Other sources</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="bookmarks.html">Browser bookmarks</a>
+        <a href="https://t.me/SmartFavoriteBot?start=import_file">A file with links</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · a second-brain bot for Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

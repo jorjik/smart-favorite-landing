@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Переезд из Raindrop.io в Telegram — импорт закладок</title>
-<meta name="description" content="Экспорт Raindrop.io в HTML или CSV и перенос закладок в Telegram-бот: ссылки и названия станут заметками, коллекции заменяет рубрика. Без OAuth.">
+<meta name="description" content="Экспорт Raindrop.io в HTML или CSV и перенос закладок в Telegram-бот: ссылки и названия станут заметками, а коллекции — рубриками. Без OAuth.">
 <link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/raindrop.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Переезд из Raindrop.io в Telegram">
@@ -22,7 +22,7 @@
   "step": [
     {"@type": "HowToStep", "name": "Откройте экспорт", "text": "В Raindrop.io откройте Settings → Export и выберите формат HTML или CSV."},
     {"@type": "HowToStep", "name": "Скачайте файл", "text": "Нажмите Export all bookmarks и дождитесь скачивания файла — он содержит все коллекции."},
-    {"@type": "HowToStep", "name": "Загрузите в мини-приложение", "text": "Smart Favorite → «Импорт» → «Закладки браузера» или «Вставить ссылки» → выберите файл. Коллекции станут одной рубрикой, разложить точнее можно после импорта."}
+    {"@type": "HowToStep", "name": "Загрузите в мини-приложение", "text": "Smart Favorite → «Импорт» → «Файл со ссылками» → выберите HTML или CSV. Коллекции из HTML и колонка folder из CSV станут рубриками; галочка «Сохранять папки как рубрики» включена по умолчанию."}
   ]
 }
 </script>
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Сохранятся ли коллекции Raindrop?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. HTML- и CSV-экспорт содержат ссылки и названия, но не структуру коллекций. Все закладки попадут в одну выбранную рубрику; дальше их можно переносить пачками на экране «Разобрать импортированное»."}},
+    {"@type": "Question", "name": "Сохранятся ли коллекции Raindrop?", "acceptedAnswer": {"@type": "Answer", "text": "Да, если в экспорте есть структура коллекций: HTML-дерево и колонка folder в CSV превращаются в рубрики. Закладки без коллекции попадут в выбранную рубрику. Если структура не нужна, снимите галочку «Сохранять папки как рубрики»."}},
     {"@type": "Question", "name": "Что делать с тегами и заметками Raindrop?", "acceptedAnswer": {"@type": "Answer", "text": "Импортируются только адреса и заголовки. Теги и текстовые заметки остаются в экспорте Raindrop — их можно хранить как резервную копию."}},
     {"@type": "Question", "name": "Можно перенести только одну коллекцию?", "acceptedAnswer": {"@type": "Answer", "text": "Да. В Raindrop откройте нужную коллекцию и экспортируйте её отдельно, затем загрузите этот файл. Или импортируйте всё и удалите лишнее одной кнопкой."}}
   ]
@@ -43,7 +43,7 @@
 <header class="g-head">
   <div class="wrap g-head-in">
     <a class="g-logo" href="../">Smart Favorite</a>
-    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import">Импортировать</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_file">Импортировать</a>
   </div>
 </header>
 
@@ -52,7 +52,7 @@
     <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Raindrop.io</nav>
     <span class="eyebrow">Переезд · Raindrop.io</span>
     <h1>Как перенести закладки из Raindrop.io в Telegram</h1>
-    <p class="lead">Raindrop отдаёт все закладки одним файлом — HTML или CSV. Загрузите его в мини-приложение, и каждая ссылка станет заметкой с названием. Коллекции заменяет рубрика.</p>
+    <p class="lead">Raindrop отдаёт все закладки одним файлом — HTML или CSV. Загрузите его в мини-приложение, и каждая ссылка станет заметкой с названием. Коллекции станут рубриками.</p>
     <p class="meta">~10 минут · бесплатно · OAuth не нужен</p>
 
     <ol class="steps">
@@ -66,7 +66,7 @@
       </li>
       <li>
         <h2>Загрузите в мини-приложение</h2>
-        <p>Откройте <a href="https://t.me/SmartFavoriteBot?start=import">Smart Favorite → «Импорт»</a>. HTML положите в «Закладки браузера», CSV — в «Вставить ссылки» или тот же источник: разбор вытащит адреса. Перед загрузкой выберите рубрику.</p>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot?start=import_file">Smart Favorite → «Импорт»</a> и выберите «Файл со ссылками». Загрузите HTML или CSV: коллекции станут рубриками, а закладки без коллекции попадут в выбранную рубрику.</p>
       </li>
     </ol>
 
@@ -82,7 +82,7 @@
 
     <section class="faq">
       <h2>Частые вопросы</h2>
-      <details><summary>Сохранятся ли коллекции Raindrop?</summary><p>Нет: экспорт содержит ссылки и названия, но не дерево коллекций. Все закладки попадут в выбранную рубрику, а разложить их точнее можно после импорта — выделяйте пачки на экране разбора и переносите в нужные рубрики.</p></details>
+      <details><summary>Сохранятся ли коллекции Raindrop?</summary><p>Да, если экспорт содержит коллекции: HTML-дерево и колонка folder в CSV становятся рубриками. Закладки без коллекции попадут в выбранную рубрику. Галочку «Сохранять папки как рубрики» можно снять, чтобы сложить всё в одну рубрику.</p></details>
       <details><summary>Что будет с тегами и заметками?</summary><p>Импортируются только адрес и заголовок. Теги и текстовые заметки остаются в файле экспорта Raindrop — сохраните его как резервную копию.</p></details>
       <details><summary>Можно перенести одну коллекцию?</summary><p>Да. Экспортируйте коллекцию отдельно и загрузите этот файл. Если проще всё сразу — импортируйте всё, а лишнее уберите в корзину одной кнопкой.</p></details>
     </section>
@@ -90,7 +90,7 @@
     <section class="cta">
       <h2>Перенесите коллекции в Telegram</h2>
       <p>Файл обрабатывается в памяти и не сохраняется на диске. Импорт можно отменить целиком.</p>
-      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import">Импортировать избранное</a>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_file">Импортировать избранное</a>
     </section>
 
     <section class="related">
