@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to move Telegram Saved Messages into the bot — Telegram Desktop export</title>
+<meta name="description" content="Step by step: export Saved Messages from Telegram Desktop as JSON, upload the ZIP to the mini app, and turn your saved links into notes with a category and no duplicates.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/en/import/telegram.html">
+<link rel="alternate" hreflang="ru" href="https://jorjik.github.io/smart-favorite-landing/import/telegram.html">
+<link rel="alternate" hreflang="en" href="https://jorjik.github.io/smart-favorite-landing/en/import/telegram.html">
+<link rel="alternate" hreflang="x-default" href="https://jorjik.github.io/smart-favorite-landing/import/telegram.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to move Telegram Saved Messages into the bot">
+<meta property="og:description" content="Telegram Desktop export → import: links from saved messages, no duplicates.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/feed-list.jpg">
+<link rel="stylesheet" href="../../import/guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to move Telegram Saved Messages into the bot",
+  "description": "Export Saved Messages from Telegram Desktop and import the links into the Smart Favorite Telegram bot.",
+  "totalTime": "PT5M",
+  "tool": [{"@type": "HowToTool", "name": "Telegram Desktop"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Install Telegram Desktop", "text": "Data export exists only in the desktop app for Windows, macOS and Linux. The mobile client and the web version cannot export."},
+    {"@type": "HowToStep", "name": "Open the data export", "text": "Settings, Advanced settings, Export Telegram data."},
+    {"@type": "HowToStep", "name": "Keep only Saved Messages", "text": "Untick everything and tick Saved Messages. Turn photos, videos and files off: the import needs links only."},
+    {"@type": "HowToStep", "name": "Pick JSON and All time", "text": "Format JSON, range All time. Click Export and wait for the archive."},
+    {"@type": "HowToStep", "name": "Upload the ZIP to the mini app", "text": "Open Smart Favorite, Import, Telegram Saved Messages, and upload the whole ZIP. result.json is found automatically."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can I get Saved Messages without an export?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Bot API does not let bots read chats, and a mini app has no access to them either. Exporting on a computer is the only way."}},
+    {"@type": "Question", "name": "Why Telegram Desktop?", "acceptedAnswer": {"@type": "Answer", "text": "Only the desktop app can export data; the mobile client and the web version have no such option. Sign in with the same account."}},
+    {"@type": "Question", "name": "How many links fit in one import?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 1000 links per import. With more, split the export by date range: what is already saved counts as duplicates and is not saved twice."}},
+    {"@type": "Question", "name": "The file is huge — is that normal?", "acceptedAnswer": {"@type": "Answer", "text": "With media ticked the ZIP can be gigabytes. Untick photos, videos and files: what remains is a few megabytes with a single result.json."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--ghost" href="../../import/telegram.html">RU</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_telegram">Import</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Home</a> / <a href="./">Import</a> / Telegram Saved Messages</nav>
+    <span class="eyebrow">Telegram</span>
+    <h1>How to move Telegram Saved Messages into the bot</h1>
+    <p class="lead">Telegram gives bots no access to your chats, so Saved Messages come over as a file: export them from Telegram Desktop and upload the archive to the mini app. Every saved message with a link becomes a note in the Telegram category, with the message caption as its title and no duplicates.</p>
+    <p class="meta">~5 minutes · free · file only, no account access</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Install Telegram Desktop</h2>
+        <p>Data export exists only in the desktop app for Windows, macOS or Linux. The mobile client and the web version cannot export — that is a Telegram limitation, not the bot's. Sign in with the same account you use on your phone.</p>
+      </li>
+      <li>
+        <h2>Open the data export</h2>
+        <p>In Telegram Desktop: Settings → Advanced settings → Export Telegram data. Older versions call the entry Export data.</p>
+      </li>
+      <li>
+        <h2>Keep only Saved Messages</h2>
+        <p>Untick everything and tick Saved Messages. Turn photos, videos and files off — the import needs links only, and the archive stays tiny.</p>
+      </li>
+      <li>
+        <h2>Pick JSON and All time</h2>
+        <p>Format <span class="inline-code">JSON</span> (HTML works too), range All time. Click Export and wait for the archive: a few minutes for thousands of messages.</p>
+      </li>
+      <li>
+        <h2>Upload the ZIP to the mini app</h2>
+        <p>Open <a href="https://t.me/SmartFavoriteBot?start=import_telegram">Smart Favorite → Import</a>, pick the Telegram Saved Messages source and upload the whole ZIP. The <span class="inline-code">result.json</span> inside is found automatically — no need to unzip.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>What lands in the import</h2>
+      <ul>
+        <li>Links from your saved messages, together with the caption: it becomes the card title.</li>
+        <li>Service records and messages without links are skipped, so the notes stay clean.</li>
+        <li>Repeats, tracking parameters included, never create duplicates: the same link is not saved twice.</li>
+        <li class="no">Photos, videos, files and link-less text are not imported: a note is a link, a title and a caption.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Frequent questions</h2>
+      <details><summary>Can I get Saved Messages without an export?</summary><p>No. The Bot API does not let bots read chats, and a mini app has no access to them either: Telegram does not hand messages to a bot, even to its owner's. Exporting on a computer is the only way.</p></details>
+      <details><summary>Why Telegram Desktop?</summary><p>Only the desktop app can export data; the mobile client and the web version have no such option. Sign in with the same account and your Saved Messages are right there.</p></details>
+      <details><summary>How many links fit in one import?</summary><p>Up to 1000 links per import. If you have more, split the export by date range and upload the archives one by one: what is already saved counts as duplicates and is not saved twice.</p></details>
+      <details><summary>The file is huge — is that normal?</summary><p>With media ticked the ZIP can be gigabytes. Untick photos, videos and files: what remains is a few megabytes with a single <span class="inline-code">result.json</span>.</p></details>
+      <details><summary>Can I undo the import?</summary><p>Yes, the whole batch at once: every note goes to the trash and can be restored from there.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Move your saved messages in a couple of minutes</h2>
+      <p>The file is processed in memory, duplicates are skipped, and the whole import can be undone.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_telegram">Import saved messages</a>
+    </section>
+
+    <section class="related">
+      <h2>Other sources</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Browser bookmarks</a>
+        <a href="https://t.me/SmartFavoriteBot?start=import_file">A file with links</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · the "second brain" bot for Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

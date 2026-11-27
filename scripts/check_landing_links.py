@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BOT_HOST = "t.me"
 BOT_PATH = "/smartfavoritebot"
 IMPORT_SOURCES = {
+    "telegram",
     "instagram",
     "x",
     "reddit",

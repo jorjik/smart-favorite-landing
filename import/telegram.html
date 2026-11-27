@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как перенести «Избранное» из Telegram в бота — экспорт Telegram Desktop</title>
+<meta name="description" content="Пошагово: выгрузить «Избранное» из Telegram Desktop в JSON, загрузить ZIP в мини-приложение и получить сохранённые ссылки заметками — с рубрикой и без дублей.">
+<link rel="canonical" href="https://jorjik.github.io/smart-favorite-landing/import/telegram.html">
+<link rel="alternate" hreflang="ru" href="https://jorjik.github.io/smart-favorite-landing/import/telegram.html">
+<link rel="alternate" hreflang="en" href="https://jorjik.github.io/smart-favorite-landing/en/import/telegram.html">
+<link rel="alternate" hreflang="x-default" href="https://jorjik.github.io/smart-favorite-landing/import/telegram.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как перенести «Избранное» из Telegram в бота">
+<meta property="og:description" content="Экспорт Telegram Desktop → импорт в бота: ссылки из сохранённых сообщений, без дублей.">
+<meta property="og:image" content="https://jorjik.github.io/smart-favorite-landing/shots/feed-list.jpg">
+<link rel="stylesheet" href="guide.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как перенести «Избранное» из Telegram в бота",
+  "description": "Выгрузить «Избранное» из Telegram Desktop и импортировать ссылки из сохранённых сообщений в Telegram-бот Smart Favorite.",
+  "totalTime": "PT5M",
+  "tool": [{"@type": "HowToTool", "name": "Telegram Desktop"}, {"@type": "HowToTool", "name": "Telegram"}],
+  "step": [
+    {"@type": "HowToStep", "name": "Установите Telegram Desktop", "text": "Экспорт данных есть только в десктопном приложении для Windows, macOS и Linux. В мобильном клиенте и веб-версии выгрузки нет."},
+    {"@type": "HowToStep", "name": "Откройте экспорт данных", "text": "Настройки → Продвинутые настройки → Экспорт данных Telegram."},
+    {"@type": "HowToStep", "name": "Оставьте только «Избранное»", "text": "Снимите остальные галочки и отметьте «Избранное» (Saved Messages). Фото, видео и файлы выключите: нужны только ссылки."},
+    {"@type": "HowToStep", "name": "Выберите JSON и «За всё время»", "text": "Формат — JSON, диапазон — «За всё время». Нажмите «Экспортировать» и дождитесь архива."},
+    {"@type": "HowToStep", "name": "Загрузите ZIP в мини-приложение", "text": "Откройте Smart Favorite → «Импорт» → «Избранное Telegram» и укажите ZIP целиком. Файл result.json внутри найдётся сам."}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Можно ли забрать «Избранное» без экспорта?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Bot API не даёт ботам читать переписку, а мини-приложение не имеет доступа к чатам. Экспорт с компьютера — единственный способ."}},
+    {"@type": "Question", "name": "Почему нужен именно Telegram Desktop?", "acceptedAnswer": {"@type": "Answer", "text": "Выгрузку умеет только десктопное приложение: в мобильном клиенте и веб-версии такого пункта нет. Войдите в Telegram Desktop тем же аккаунтом."}},
+    {"@type": "Question", "name": "Сколько ссылок влезет за один раз?", "acceptedAnswer": {"@type": "Answer", "text": "До 1000 ссылок за импорт. Если сообщений больше, разбейте экспорт по диапазону дат: уже сохранённое посчитается дублями и не задвоится."}},
+    {"@type": "Question", "name": "Файл получился большой — это нормально?", "acceptedAnswer": {"@type": "Answer", "text": "Если в экспорте остались медиа, ZIP бывает на гигабайты. Снимите галочки с фото, видео и файлов — останется несколько мегабайт с одним result.json."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="g-head">
+  <div class="wrap g-head-in">
+    <a class="g-logo" href="../">Smart Favorite</a>
+    <a class="btn btn--ghost" href="../en/import/telegram.html">EN</a>
+    <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_telegram">Импортировать</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs"><a href="../">Главная</a> / <a href="./">Импорт</a> / Избранное Telegram</nav>
+    <span class="eyebrow">Telegram</span>
+    <h1>Как перенести «Избранное» из Telegram в бота</h1>
+    <p class="lead">Telegram не отдаёт ботам переписку, поэтому «Избранное» переносится файлом: сохраните выгрузку Telegram Desktop и загрузите её в мини-приложение. Каждое сохранённое сообщение со ссылкой станет заметкой с рубрикой «Telegram» — с подписью из сообщения и без дублей.</p>
+    <p class="meta">~5 минут · бесплатно · только файл, доступ к аккаунту не нужен</p>
+
+    <ol class="steps">
+      <li>
+        <h2>Установите Telegram Desktop</h2>
+        <p>Экспорт данных есть только в десктопном приложении для Windows, macOS или Linux. С телефона и из веб-версии выгрузку сделать нельзя — это ограничение Telegram, а не бота. Войдите тем же аккаунтом, что и на телефоне.</p>
+      </li>
+      <li>
+        <h2>Откройте экспорт данных</h2>
+        <p>В Telegram Desktop: «Настройки» → «Продвинутые настройки» → «Экспорт данных Telegram». В старых версиях пункт называется просто «Экспорт данных».</p>
+      </li>
+      <li>
+        <h2>Оставьте только «Избранное»</h2>
+        <p>Снимите все галочки и отметьте «Избранное» (Saved Messages). Фото, видео и файлы выключите — для импорта нужны только ссылки, и архив получится крошечным.</p>
+      </li>
+      <li>
+        <h2>Выберите JSON и «За всё время»</h2>
+        <p>Формат — <span class="inline-code">JSON</span> (подойдёт и HTML). Диапазон — «За всё время». Нажмите «Экспортировать» и дождитесь архива: на тысячах сообщений это несколько минут.</p>
+      </li>
+      <li>
+        <h2>Загрузите ZIP в мини-приложение</h2>
+        <p>Откройте <a href="https://t.me/SmartFavoriteBot?start=import_telegram">Smart Favorite → «Импорт»</a>, выберите источник «Избранное Telegram» и укажите ZIP целиком. Файл <span class="inline-code">result.json</span> внутри найдётся сам — распаковывать не нужно.</p>
+      </li>
+    </ol>
+
+    <section class="callout">
+      <h2>Что попадёт в импорт</h2>
+      <ul>
+        <li>Ссылки из сохранённых сообщений — вместе с подписью: она станет заголовком карточки.</li>
+        <li>Служебные записи и сообщения без ссылок пропускаются — мусора в заметках не будет.</li>
+        <li>Повторы, в том числе с utm-метками, не создают дублей: та же ссылка второй раз не сохраняется.</li>
+        <li class="no">Фото, видео, файлы и текст без ссылок не переносятся: заметка — это ссылка, заголовок и подпись.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Можно ли забрать «Избранное» без экспорта?</summary><p>Нет. Bot API не даёт ботам читать переписку, а мини-приложение не имеет доступа к чатам: Telegram не отдаёт сообщения даже владельцу через бота. Экспорт с компьютера — единственный способ.</p></details>
+      <details><summary>Почему нужен именно Telegram Desktop?</summary><p>Выгрузку умеет только десктопное приложение: в мобильном клиенте и в веб-версии такого пункта нет. Скачайте Telegram Desktop, войдите тем же аккаунтом — «Избранное» будет то же самое.</p></details>
+      <details><summary>Сколько ссылок влезет за один раз?</summary><p>До 1000 ссылок за импорт. Если в «Избранном» больше, разбейте экспорт по диапазону дат и загрузите архивы по очереди: уже сохранённое посчитается дублями и не задвоится.</p></details>
+      <details><summary>Файл получился большой — это нормально?</summary><p>Если в экспорте остались медиа, ZIP бывает на гигабайты. Снимите галочки с фото, видео и файлов — останется несколько мегабайт с одним <span class="inline-code">result.json</span>.</p></details>
+      <details><summary>Импорт можно отменить?</summary><p>Да, целиком: вся пачка уйдёт в корзину, откуда заметки восстанавливаются.</p></details>
+    </section>
+
+    <section class="cta">
+      <h2>Перенесите «Избранное» за пару минут</h2>
+      <p>Файл не сохраняется на диске, дубли не создаются, импорт можно отменить целиком.</p>
+      <a class="btn btn--primary" href="https://t.me/SmartFavoriteBot?start=import_telegram">Импортировать избранное</a>
+    </section>
+
+    <section class="related">
+      <h2>Другие источники</h2>
+      <div class="links">
+        <a href="instagram.html">Instagram</a>
+        <a href="x.html">X (Twitter)</a>
+        <a href="reddit.html">Reddit</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="bookmarks.html">Закладки браузера</a>
+        <a href="raindrop.html">Raindrop</a>
+        <a href="instapaper.html">Instapaper</a>
+        <a href="readwise.html">Readwise</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Favorite · бот-«второй мозг» для Telegram</span>
+    <span><a href="https://t.me/SmartFavoriteBot">@SmartFavoriteBot</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
